@@ -2,6 +2,6 @@
 {
     public interface GamePieces
     {
-        string Move((int x, int y), (int x2, int y2));
+        string Move((int, int) oldCords, (int, int) newCords);
     }
 }
