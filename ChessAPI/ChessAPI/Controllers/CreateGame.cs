@@ -4,17 +4,19 @@
 
 namespace ChessAPI.Controllers
 {
-    
     [ApiController]
-    public class GetBoard : ControllerBase
+    public class CreateGame : ControllerBase
     {
-        // GET: api/<GetBoard>
+        // GET: api/<CreateGame>
         [Route("api/[controller]")]
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var game = new Game() { MatchId="123123123" };
-            return new string[] { "value1", "value2" };
+            var game = new Game();
+
+            MyStaticClass.
+
+            return new string[] { game.MatchId, game.Player1Id, game.Player2Id };
         }
     }
 }
