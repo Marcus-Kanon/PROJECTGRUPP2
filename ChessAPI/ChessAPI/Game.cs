@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        GamePieces[,] Board { get; set; }
+        GamePiece[,] Board { get; set; }
         public string MatchId { get; set; }
         public string Player1Id { get; set; }
         public string PlayerId { get; set; }
