@@ -1,7 +1,9 @@
 ﻿namespace ChessAPI
 {
-    public interface GamePieces
+    public interface GamePiece
     {
+        GamePiece [,] _board { get; set; }
         string Move((int, int) oldCords, (int, int) newCords);
+
     }
 }
