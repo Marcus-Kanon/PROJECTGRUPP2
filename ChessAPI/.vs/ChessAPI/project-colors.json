@@ -5,7 +5,12 @@
       "ProjectGuid": "fa08e4c1-dce5-4798-965b-e509a8aa626a",
       "DisplayName": "ChessAPI",
       "ColorIndex": 0
+    },
+    "3d7d230d-8448-4e00-ae33-a262dfa910b3": {
+      "ProjectGuid": "3d7d230d-8448-4e00-ae33-a262dfa910b3",
+      "DisplayName": "ClientTEST",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
