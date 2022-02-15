@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fa08e4c1-dce5-4798-965b-e509a8aa626a": {
+      "ProjectGuid": "fa08e4c1-dce5-4798-965b-e509a8aa626a",
+      "DisplayName": "ChessAPI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
