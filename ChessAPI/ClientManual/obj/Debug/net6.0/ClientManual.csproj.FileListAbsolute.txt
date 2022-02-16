@@ -1,0 +1,17 @@
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ClientManual.exe
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ClientManual.deps.json
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ClientManual.runtimeconfig.json
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ClientManual.dll
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ref\ClientManual.dll
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\ClientManual.pdb
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.csproj.AssemblyReference.cache
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.AssemblyInfoInputs.cache
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.AssemblyInfo.cs
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.csproj.CoreCompileInputs.cache
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.csproj.CopyComplete
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.dll
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ref\ClientManual.dll
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.pdb
+C:\Users\Kanon\source\repos\PROJECTGRUPP2\ChessAPI\ClientManual\obj\Debug\net6.0\ClientManual.genruntimeconfig.cache
