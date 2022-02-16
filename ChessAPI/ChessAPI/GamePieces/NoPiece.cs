@@ -2,12 +2,12 @@
 
 namespace ChessAPI.GamePieces
 {
-    public class King : GamePiece
+    public class NoPiece : GamePiece
     {
-        public string Name { get; set; } = "King";
+        public string Name { get; set; } = "";
         public GamePiece[,] _board { get; set; }   
         
-        public King(GamePiece [,] board)
+        public NoPiece(GamePiece [,] board)
         {
             _board = board;
 
