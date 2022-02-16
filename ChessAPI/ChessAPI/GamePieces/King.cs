@@ -1,10 +1,13 @@
-﻿namespace ChessAPI.GamePieces
+﻿using ChessAPI.Models;
+
+namespace ChessAPI.GamePieces
 {
-    public class King : IGamePiece
+    public class King : GamePiece
     {
-        public IGamePiece[,] _board { get; set; }
+        public string Name { get; set; } = "King";
+        public GamePiece[,] _board { get; set; }   
         
-        public King(IGamePiece [,] board)
+        public King(GamePiece [,] board)
         {
             _board = board;
 

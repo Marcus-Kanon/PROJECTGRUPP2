@@ -1,4 +1,4 @@
-﻿namespace ChessAPI
+﻿namespace ClientTEST.Interfaces
 {
     public interface IGamePiece
     {
