@@ -8,30 +8,21 @@ namespace ChessAPI.Controllers
     [ApiController]
     public class CreateGame : ControllerBase
     {
-        IGamesService _myclass;
+        IGamesService _gamesService;
 
         public CreateGame(IGamesService myclass)
         {
-            _myclass = myclass;
+            _gamesService = myclass;
         }
 
         // GET: api/<CreateGame>
         [Route("api/[controller]")]
         [HttpGet]
         public string Get()
-        {
-            Random rnd = new();
-            string player1Id = rnd.Next(0, 10000000).ToString();
+        { 
+            Game game = new Game();
 
-            Game game = new()
-            {
-                GameId = rnd.Next(0, 10000000).ToString(),
-                Player1Id = player1Id,
-                Player2Id = rnd.Next(0, 10000000).ToString(),
-                PlayerTurnId = player1Id
-            };
-
-            _myclass.Games.Add(game);
+            _gamesService.Games.Add(game);
 
             string json = JsonConvert.SerializeObject(game, Formatting.Indented);
 

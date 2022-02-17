@@ -6,6 +6,6 @@
         public string GameId { get; set; }
         public string Player1Id { get; set; }
         public string Player2Id { get; set; }
-        bool ToMovePlayer1 { get; set; }
+        public string PlayerTurnId { get; set; }
     }
 }

@@ -1,22 +1,22 @@
-﻿using ChessAPI.Models;
+using ChessAPI.Models;
 
 namespace ChessAPI.GamePieces
 {
     public class King : GamePiece
     {
         public override string Name { get; set; } = "\u2654";
-        GamePiece[,] _board;
+        Game _game;
         
-        public King(GamePiece [,] board)
+        public King(Game game, bool color)
         {
-            _board = board;
+            _game = game;
 
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
         {
-            _board[newCords.Item1, newCords.Item2] = new King(_board);
-            _board[oldCords.Item1, oldCords.Item2] = new NoPiece(_board);
+            _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
+            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
 
             return "Successfully moved king... i think...";
         }
