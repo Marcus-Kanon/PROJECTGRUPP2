@@ -15,6 +15,18 @@ namespace ChessAPI
 
         public Game()
         {
+            Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH];
+
+            for (int x = 0; x < BOARD_WIDTH; x++)
+            {
+                for (int y = 0; y < BOARD_WIDTH; y++)
+                {
+                    Board[x, y] = new NoPiece(Board);
+                }
+            }
+
+            Board[2, 0] = new King(Board);
+            /*
             Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
             {
                 { new NoPiece(Board), new NoPiece(Board), new King(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
@@ -25,7 +37,7 @@ namespace ChessAPI
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new King(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
-            };
+            };*/
 
         }
     }
