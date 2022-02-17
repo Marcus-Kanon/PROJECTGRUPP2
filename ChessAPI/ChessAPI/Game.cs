@@ -1,4 +1,4 @@
-﻿using ChessAPI.GamePieces;
+using ChessAPI.GamePieces;
 using ChessAPI.Models;
 
 namespace ChessAPI
@@ -38,6 +38,7 @@ namespace ChessAPI
                     Board[x, y] = new NoPiece(this);
                 }
             }
+
 
             Board[2, 0] = new King(this, true);
         }

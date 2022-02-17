@@ -1,10 +1,10 @@
-﻿using ChessAPI.Models;
+using ChessAPI.Models;
 
 namespace ChessAPI.GamePieces
 {
     public class King : GamePiece
     {
-        public override string Name { get; set; } = "King";
+        public override string Name { get; set; } = "\u2654";
         Game _game;
         
         public King(Game game, bool color)

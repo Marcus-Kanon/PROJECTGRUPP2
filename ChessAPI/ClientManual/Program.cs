@@ -2,6 +2,12 @@
 using Newtonsoft.Json;
 using System.Net;
 using ClientManual.Models;
+using ClientManual;
+
+ConsoleHelper.SetCurrentFont("MS Gothic", 20); //för att få schackpjäserna att funka så måste vi byta font till t.ex MS Gothic som kan läsa hexkoden, lagt fontsize = 20 för tillfället så pjäserna syns tydligare
+const int BOARD_WIDTH = 8;
+string HorizontalSymbol = "*----";
+string VerticalSymbol = "| ";
 
 /*
  * 1. Installera Nuget: Newtonsoft.Json
@@ -28,6 +34,12 @@ string results = new WebClient().DownloadString("https://localhost:7223/api/Crea
 //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
 GameState game = JsonConvert.DeserializeObject<GameState>(results);
 
+/* TEST FÖR ATT FIXA FONTEN SÅ MAN KAN LÄSA PJÄSTECKEN, SKA TAS BORT
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.WriteLine("\u2659");
+Console.ReadLine();
+*/
+
 //Skriver ut några properties från vårat objekt
 Console.WriteLine("GameId: " + game.GameId);
 Console.WriteLine("Player1Id: " + game.Player1Id);
@@ -50,22 +62,41 @@ while(true)
     game = JsonConvert.DeserializeObject<GameState>(results);
 
     //Skriver ut schackbrädet
-    for (int y = 0; y < 8; y++)
+    Console.Clear();
+    Console.WriteLine("     0    1    2    3    4    5    6    7");
+    for (int y = 0; y < BOARD_WIDTH; y++)
     {
-        for (int x = 0; x < 8; x++)
+        Console.Write("  ");
+        for (int i = 0; i < BOARD_WIDTH; i++)
         {
-            var name = game.Board[x, y]?.Name ?? "null";
-            Console.Write(name + " | ");
+            Console.Write(HorizontalSymbol);
         }
-        Console.WriteLine("\n----------------------------------------------------------------");
+
+        Console.Write("*\n");
+
+        for (int x = 0; x < BOARD_WIDTH; x++)
+        {
+            if(x == 0)
+                Console.Write(y + " ");
+            var name = game.Board[x, y]?.Name ?? "null";
+            Console.OutputEncoding = System.Text.Encoding.UTF8; //TODO: fixa symbolen, om den ens går???
+            Console.Write(VerticalSymbol + name + "  ");
+        }
+        Console.Write("|\n");
     }
+    Console.Write("  ");
+    for (int x = 0; x < 8; x++)
+    {
+        Console.Write(HorizontalSymbol);
+    }
+    Console.Write("*\n\n");
 
     //Väljer parametrar för Move API:n
-    Console.WriteLine("Choose cords of piece to move: ");
-    Console.Write("oldX: "); var oldX = Console.ReadLine();
-    Console.Write("oldY: "); var oldY = Console.ReadLine();
-    Console.Write("newX: "); var newX = Console.ReadLine();
-    Console.Write("newY: "); var newY = Console.ReadLine();
+    Console.WriteLine("Choose coordinates of piece to move: ");
+    Console.Write("old row: "); var oldX = Console.ReadLine();
+    Console.Write("old column: "); var oldY = Console.ReadLine();
+    Console.Write("new row: "); var newX = Console.ReadLine();
+    Console.Write("new column: "); var newY = Console.ReadLine();
 
     //Ansluter Move API:n
     results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1Id}/{oldX}/{oldY}/{newX}/{newY}");
@@ -73,6 +104,8 @@ while(true)
     //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
     string message = results;
 
-    Console.WriteLine("Move message: ");
+    Console.Write("\nMove message: ");
     Console.WriteLine(message);
+    Console.WriteLine("Press enter to continue...");
+    Console.ReadLine();
 }
