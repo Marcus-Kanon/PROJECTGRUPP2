@@ -4,7 +4,7 @@ namespace ChessAPI.GamePieces
 {
     public class King : GamePiece
     {
-        public override string Name { get; set; } = "\u2659";
+        public override string Name { get; set; } = "\u2654";
         GamePiece[,] _board;
         
         public King(GamePiece [,] board)
