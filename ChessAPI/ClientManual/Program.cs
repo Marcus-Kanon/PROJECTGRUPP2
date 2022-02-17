@@ -79,7 +79,7 @@ while(true)
             if(x == 0)
                 Console.Write(y + " ");
             var name = game.Board[x, y]?.Name ?? "null";
-            Console.OutputEncoding = System.Text.Encoding.UTF8; //TODO: fixa symbolen, om den ens går???
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
             Console.Write(VerticalSymbol + name + "  ");
         }
         Console.Write("|\n");

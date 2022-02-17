@@ -5,19 +5,17 @@ namespace ChessAPI.GamePieces
     public class Knight : GamePiece
     {
         public override string Name { get; set; } = "\u2658";
-        GamePiece[,] _board;
-        
-        public Knight(GamePiece [,] board)
-        {
-            _board = board;
+        Game _game;
 
+        public Knight(Game game, bool color)
+        {
+            _game = game;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
         {
-            _board[newCords.Item1, newCords.Item2] = new Knight(_board);
-            _board[oldCords.Item1, oldCords.Item2] = new NoPiece(_board);
-
+            _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
+            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
             return "Successfully moved knight... i think...";
         }
     }

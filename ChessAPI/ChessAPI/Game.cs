@@ -40,7 +40,19 @@ namespace ChessAPI
             }
 
 
-            Board[2, 0] = new King(this, true);
+            //Board[2, 0] = new King(this, true);
+
+            Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
+{
+                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Rook(this, true) },
+                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Knight(this, true) },
+                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Bishop(this, true) },
+                { new Queen(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new King(this, true) },
+                { new King(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Queen(this, true) },
+                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Bishop(this, true) },
+                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Knight(this, true) },
+                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Rook(this, true) },
+};
         }
 
         public void ChangePlayerTurn()
