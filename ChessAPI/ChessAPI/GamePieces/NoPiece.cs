@@ -5,11 +5,11 @@ namespace ChessAPI.GamePieces
     public class NoPiece : GamePiece
     {
         public override string Name { get; set; } = " No ";
-        GamePiece[,] _board;
+        Game _game;
         
-        public NoPiece(GamePiece [,] board)
+        public NoPiece(Game game)
         {
-            _board = board;
+            _game = game;
 
         }
 
