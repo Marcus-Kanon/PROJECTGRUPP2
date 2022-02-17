@@ -2,12 +2,12 @@
 
 namespace ChessAPI.GamePieces
 {
-    public class King : GamePiece
+    public class Bishop : GamePiece
     {
-        public override string Name { get; set; } = "\u2659";
+        public override string Name { get; set; } = "\u2657";
         GamePiece[,] _board;
         
-        public King(GamePiece [,] board)
+        public Bishop(GamePiece [,] board)
         {
             _board = board;
 
@@ -15,10 +15,10 @@ namespace ChessAPI.GamePieces
 
         public override string Move((int, int) oldCords, (int, int) newCords)
         {
-            _board[newCords.Item1, newCords.Item2] = new King(_board);
+            _board[newCords.Item1, newCords.Item2] = new Bishop(_board);
             _board[oldCords.Item1, oldCords.Item2] = new NoPiece(_board);
 
-            return "Successfully moved king... i think...";
+            return "Successfully moved bishop... i think...";
         }
     }
 }

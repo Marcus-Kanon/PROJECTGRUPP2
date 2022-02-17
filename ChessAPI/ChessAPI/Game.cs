@@ -25,19 +25,32 @@ namespace ChessAPI
                 }
             }
 
-            Board[2, 0] = new King(Board);
-            /*
+            //Board[2, 0] = new King(Board);
+           /*
             Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
             {
-                { new NoPiece(Board), new NoPiece(Board), new King(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
+                { new Rook(Board), new Knight(Board), new Bishop(Board), new King(Board), new Queen(Board), new Bishop(Board), new Knight(Board), new Rook(Board) },
+                { new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
                 { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
-                { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
-                { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
-                { new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new King(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
+                { new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board), new Pawn(Board) },
+                { new Rook(Board), new Knight(Board), new Bishop(Board), new King(Board), new Queen(Board), new Bishop(Board), new Knight(Board), new Rook(Board) },
             };*/
+
+            Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
+{
+                { new Rook(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Rook(Board) },
+                { new Knight(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Knight(Board) },
+                { new Bishop(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Bishop(Board) },
+                { new Queen(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new King(Board) },
+                { new King(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Queen(Board) },
+                { new Bishop(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Bishop(Board) },
+                { new Knight(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Knight(Board) },
+                { new Rook(Board), new Pawn(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new Pawn(Board), new Rook(Board) },
+};
+
 
         }
     }

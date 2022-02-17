@@ -2,7 +2,9 @@
 using Newtonsoft.Json;
 using System.Net;
 using ClientManual.Models;
+using ClientManual;
 
+ConsoleHelper.SetCurrentFont("MS Gothic", 20); //för att få schackpjäserna att funka så måste vi byta font till t.ex MS Gothic som kan läsa hexkoden
 /*
  * 1. Installera Nuget: Newtonsoft.Json
  * Det används för att serialisera/deserialisera objekten som ska skickas/tas emot av API
@@ -28,6 +30,12 @@ string results = new WebClient().DownloadString("https://localhost:7223/api/Crea
 //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
 GameState game = JsonConvert.DeserializeObject<GameState>(results);
 
+/* TEST FÖR ATT FIXA FONTEN SÅ MAN KAN LÄSA PJÄSTECKEN, SKA TAS BORT
+Console.OutputEncoding = System.Text.Encoding.UTF8;
+Console.WriteLine("\u2659");
+Console.ReadLine();
+*/
+
 //Skriver ut några properties från vårat objekt
 Console.WriteLine("GameId: " + game.GameId);
 Console.WriteLine("Player1Id: " + game.Player1Id);
@@ -50,15 +58,33 @@ while(true)
     game = JsonConvert.DeserializeObject<GameState>(results);
 
     //Skriver ut schackbrädet
+    Console.WriteLine("     0    1    2    3    4    5    6    7");
     for (int y = 0; y < 8; y++)
     {
+        Console.Write("  ");
+        for (int i = 0; i < 8; i++)
+        {
+            Console.Write("*----");
+        }
+
+        Console.Write("*\n");
+
         for (int x = 0; x < 8; x++)
         {
+            if(x == 0)
+                Console.Write(y + " ");
             var name = game.Board[x, y]?.Name ?? "null";
-            Console.Write(name + " | ");
+            Console.OutputEncoding = System.Text.Encoding.UTF8; //TODO: fixa symbolen, om den ens går???
+            Console.Write("| " + name + "  ");
         }
-        Console.WriteLine("\n----------------------------------------------------------------");
+        Console.Write("|\n");
     }
+    Console.Write("  ");
+    for (int x = 0; x < 8; x++)
+    {
+        Console.Write("*----");
+    }
+    Console.Write("*\n\n");
 
     //Väljer parametrar för Move API:n
     Console.WriteLine("Choose cords of piece to move: ");

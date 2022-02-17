@@ -4,7 +4,7 @@ namespace ChessAPI.GamePieces
 {
     public class NoPiece : GamePiece
     {
-        public override string Name { get; set; } = " No ";
+        public override string Name { get; set; } = " ";
         GamePiece[,] _board;
         
         public NoPiece(GamePiece [,] board)
