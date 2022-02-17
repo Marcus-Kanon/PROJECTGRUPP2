@@ -41,5 +41,13 @@ namespace ChessAPI
 
             Board[2, 0] = new King(this, true);
         }
+
+        public void ChangePlayerTurn()
+        {
+            if (Player1Id == PlayerTurnId)
+                PlayerTurnId = Player2Id;
+            else
+                PlayerTurnId = Player1Id;
+        }
     }
 }
