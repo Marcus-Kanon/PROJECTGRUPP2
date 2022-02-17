@@ -1,12 +1,12 @@
 ﻿namespace ClientManual.Models
 {
-    public class GamePiece
+    public class GamePiece : IGamePiece
     {
-        public string Name { get; set; }
-        GamePiece [,] _board { get; set; }
-        public virtual string Move((int, int) oldCords, (int, int) newCords)
+        public string Name { get; set; } = "";
+
+        public string Move((int, int) oldCords, (int, int) newCords)
         {
-            return "";
+            throw new NotImplementedException();
         }
     }
 }

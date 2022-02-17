@@ -30,8 +30,8 @@ GameState game = JsonConvert.DeserializeObject<GameState>(results);
 
 //Skriver ut några properties från vårat objekt
 Console.WriteLine("GameId: " + game.GameId);
-Console.WriteLine("Player1Id: " + game.GameId);
-Console.WriteLine("Player2d: " + game.GameId);
+Console.WriteLine("Player1Id: " + game.Player1Id);
+Console.WriteLine("Player2d: " + game.Player2Id);
 Console.WriteLine("Press Enter to Continue");
 Console.ReadLine();
 
@@ -41,20 +41,38 @@ Console.ReadLine();
  * Om vi ska kalla på GetBoard så behöver vi ange ett GameId och ett PlayerId:
  */
 
-//Ansluter API med parametrar GameId/Player1Id
-results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1Id);
-
-//Deserialiserar svaret vi får
-game = JsonConvert.DeserializeObject<GameState>(results);
-
-//Skriver ut schackbrädet
-for (int x = 0; x < 8; x++)
+while(true)
 {
+    //Ansluter API med parametrar GameId/Player1Id
+    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1Id);
+
+    //Deserialiserar svaret vi får
+    game = JsonConvert.DeserializeObject<GameState>(results);
+
+    //Skriver ut schackbrädet
     for (int y = 0; y < 8; y++)
     {
-        var name = game.Board[x, y]?.Name ?? "null";
-        Console.Write(name + " | ");
+        for (int x = 0; x < 8; x++)
+        {
+            var name = game.Board[x, y]?.Name ?? "null";
+            Console.Write(name + " | ");
+        }
+        Console.WriteLine("\n----------------------------------------------------------------");
     }
-    Console.WriteLine("\n----------------------------------------------------------------");
+
+    //Väljer parametrar för Move API:n
+    Console.WriteLine("Choose cords of piece to move: ");
+    Console.Write("oldX: "); var oldX = Console.ReadLine();
+    Console.Write("oldY: "); var oldY = Console.ReadLine();
+    Console.Write("newX: "); var newX = Console.ReadLine();
+    Console.Write("newY: "); var newY = Console.ReadLine();
+
+    //Ansluter Move API:n
+    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1Id}/{oldX}/{oldY}/{newX}/{newY}");
+
+    //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
+    string message = results;
+
+    Console.WriteLine("Move message: ");
+    Console.WriteLine(message);
 }
-Console.ReadLine();

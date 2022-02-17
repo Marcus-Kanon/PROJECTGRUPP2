@@ -4,8 +4,8 @@ namespace ChessAPI.GamePieces
 {
     public class NoPiece : GamePiece
     {
-        public string Name { get; set; } = "";
-        public GamePiece[,] _board { get; set; }   
+        public override string Name { get; set; } = " No ";
+        GamePiece[,] _board;
         
         public NoPiece(GamePiece [,] board)
         {
@@ -13,9 +13,9 @@ namespace ChessAPI.GamePieces
 
         }
 
-        public string Move((int, int) oldCords, (int, int) newCords)
+        public override string Move((int, int) oldCords, (int, int) newCords)
         {
-            throw new NotImplementedException();
+            return "No Piece. Cannot move.";
         }
     }
 }

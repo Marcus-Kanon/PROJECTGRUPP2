@@ -15,6 +15,7 @@ namespace ChessAPI
 
         public Game()
         {
+            Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH];
             Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
             {
                 { new NoPiece(Board), new NoPiece(Board), new King(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board), new NoPiece(Board) },
