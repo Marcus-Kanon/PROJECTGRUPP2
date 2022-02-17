@@ -10,7 +10,6 @@ namespace ChessAPI.GamePieces
         public King(Game game, bool color)
         {
             _game = game;
-
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
