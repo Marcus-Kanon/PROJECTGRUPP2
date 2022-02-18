@@ -4,6 +4,7 @@
     {   
         public virtual string Name { get; set; } = "";
         public virtual bool? Color { get; set; }
+        public virtual PieceType Type { get; set; }
         protected Game _game;
 
         public GamePiece(Game game, bool? color)
@@ -16,5 +17,17 @@
         {
             throw new NotImplementedException();
         }
+
+        public enum PieceType
+        {
+            NoPiece,
+            Pawn,
+            Rook,
+            Knight,
+            Bishop,
+            Queen,
+            King
+        }
+
     }
 }

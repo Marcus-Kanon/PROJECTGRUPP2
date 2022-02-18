@@ -8,6 +8,7 @@ namespace ChessAPI.GamePieces
 
         public Rook(Game game, bool color) : base(game, color)
         {
+            Type = PieceType.Rook;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)

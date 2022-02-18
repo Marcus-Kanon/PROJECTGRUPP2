@@ -8,6 +8,7 @@ namespace ChessAPI.GamePieces
         
         public NoPiece(Game game) : base(game, null)
         {
+            Type = PieceType.NoPiece;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)

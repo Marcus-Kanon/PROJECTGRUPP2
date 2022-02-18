@@ -8,6 +8,7 @@ namespace ChessAPI.GamePieces
         
         public King(Game game, bool color) : base(game, color)
         {
+            Type = PieceType.King;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
