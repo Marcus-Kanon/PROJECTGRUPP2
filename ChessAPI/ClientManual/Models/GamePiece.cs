@@ -6,7 +6,7 @@
         public bool? Color { get; set; }
         public virtual PieceType Type { get; set; }
 
-        public string Move((int, int) oldCords, (int, int) newCords)
+        public MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             throw new NotImplementedException();
         }

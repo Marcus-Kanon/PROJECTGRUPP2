@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,8 +32,9 @@ namespace ChessAPI.Controllers
             if (game.Board[oldX, oldY] == null)
                 return "Position is null";
 
-            
-            return game.Board[oldX, oldY].Move((oldX, oldY), (newX, newY));
+            string json = JsonConvert.SerializeObject(game.Board[oldX, oldY].Move((oldX, oldY), (newX, newY)));
+
+            return json;
         }
     }
 }
