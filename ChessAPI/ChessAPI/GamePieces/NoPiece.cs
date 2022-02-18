@@ -1,4 +1,4 @@
-﻿using ChessAPI.Models;
+﻿using SharedCsharpModels.Models;
 
 namespace ChessAPI.GamePieces
 {
@@ -6,7 +6,7 @@ namespace ChessAPI.GamePieces
     {
         public override string Name { get; set; } = " ";
         
-        public NoPiece(Game game) : base(game, null)
+        public NoPiece(GameState game) : base(game, null)
         {
             Type = PieceType.NoPiece;
         }

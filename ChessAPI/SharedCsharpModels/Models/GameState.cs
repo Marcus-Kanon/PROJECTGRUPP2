@@ -1,4 +1,4 @@
-﻿namespace ChessAPI.Models
+﻿namespace SharedCsharpModels.Models
 {
     public class GameState
     {

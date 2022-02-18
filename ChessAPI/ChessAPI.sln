@@ -5,9 +5,16 @@ VisualStudioVersion = 17.0.32126.317
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessAPI", "ChessAPI\ChessAPI.csproj", "{FA08E4C1-DCE5-4798-965B-E509A8AA626A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientManual", "ClientManual\ClientManual.csproj", "{18F533DA-19BD-4760-AFDD-A341CC250671}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManual", "ClientManual\ClientManual.csproj", "{18F533DA-19BD-4760-AFDD-A341CC250671}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedCsharpModels", "SharedCsharpModels\SharedCsharpModels.shproj", "{7CDF6821-D79E-4285-A374-5A2EB1031F80}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SharedCsharpModels\SharedCsharpModels.projitems*{18f533da-19bd-4760-afdd-a341cc250671}*SharedItemsImports = 5
+		SharedCsharpModels\SharedCsharpModels.projitems*{7cdf6821-d79e-4285-a374-5a2eb1031f80}*SharedItemsImports = 13
+		SharedCsharpModels\SharedCsharpModels.projitems*{fa08e4c1-dce5-4798-965b-e509a8aa626a}*SharedItemsImports = 5
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

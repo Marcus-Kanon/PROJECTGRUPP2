@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using SharedCsharpModels.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,7 +22,7 @@ namespace ChessAPI.Controllers
         [HttpGet]
         public string Get(string gameId, string playerId, int newX, int newY, int oldX, int oldY)
         {
-            Game game = _gamesService.Games.FirstOrDefault(q => q.GameId == gameId);
+            GameState game = _gamesService.Games.FirstOrDefault(q => q.GameId == gameId);
 
             if (game == null)
                 return "No game found";

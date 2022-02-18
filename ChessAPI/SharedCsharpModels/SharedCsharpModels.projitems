@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>7cdf6821-d79e-4285-a374-5a2eb1031f80</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SharedCsharpModels</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GamePiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGamePiece.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MoveValidationMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PieceType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />
+  </ItemGroup>
+</Project>

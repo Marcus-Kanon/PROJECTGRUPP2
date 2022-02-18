@@ -1,8 +1,8 @@
 ﻿
 using Newtonsoft.Json;
 using System.Net;
-using ClientManual.Models;
 using ClientManual;
+using SharedCsharpModels.Models;
 
 ConsoleHelper.SetCurrentFont("MS Gothic", 20); //för att få schackpjäserna att funka så måste vi byta font till t.ex MS Gothic som kan läsa hexkoden, lagt fontsize = 20 för tillfället så pjäserna syns tydligare
 const int BOARD_WIDTH = 8;
