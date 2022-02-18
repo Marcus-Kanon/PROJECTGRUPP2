@@ -4,7 +4,10 @@ namespace ChessAPI.GamePieces
 {
     public class Pawn : GamePiece
     {
-        public override string Name { get; set; } = "\u2659";  //white pawn unicode
+        public override string Name
+        {
+            get { if (Color == true) { return "\u2659"; } else { return "\u265F"; } }
+        }
 
         public Pawn(Game game, bool color) : base(game, color)
         {
