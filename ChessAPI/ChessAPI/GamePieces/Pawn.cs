@@ -5,10 +5,9 @@ namespace ChessAPI.GamePieces
     public class Pawn : GamePiece
     {
         public override string Name { get; set; } = "\u2659";  //white pawn unicode
-        Game _game;
-        public Pawn(Game game, bool color)
+
+        public Pawn(Game game, bool color) : base(game, color)
         {
-            _game = game;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)

@@ -5,11 +5,9 @@ namespace ChessAPI.GamePieces
     public class Queen : GamePiece
     {
         public override string Name { get; set; } = "\u2655";
-        Game _game;
 
-        public Queen(Game game, bool color)
+        public Queen(Game game, bool color) : base(game, color)
         {
-            _game = game;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
