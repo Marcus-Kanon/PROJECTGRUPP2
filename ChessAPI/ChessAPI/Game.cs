@@ -44,14 +44,14 @@ namespace ChessAPI
 
             Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
 {
-                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Rook(this, true) },
-                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Knight(this, true) },
-                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Bishop(this, true) },
-                { new Queen(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new King(this, true) },
-                { new King(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Queen(this, true) },
-                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Bishop(this, true) },
-                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Knight(this, true) },
-                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, true), new Rook(this, true) },
+                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Rook(this, false) },
+                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Knight(this, false) },
+                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Bishop(this, false) },
+                { new Queen(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new King(this, false) },
+                { new King(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Queen(this, false) },
+                { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Bishop(this, false) },
+                { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Knight(this, false) },
+                { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Rook(this, false) },
 };
         }
 
