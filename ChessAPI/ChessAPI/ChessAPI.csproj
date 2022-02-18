@@ -13,4 +13,6 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <Import Project="..\SharedCsharpModels\SharedCsharpModels.projitems" Label="Shared" />
+
 </Project>

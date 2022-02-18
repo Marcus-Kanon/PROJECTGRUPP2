@@ -1,4 +1,4 @@
-﻿using ChessAPI.Models;
+﻿using SharedCsharpModels.Models;
 
 namespace ChessAPI.GamePieces
 {
@@ -9,7 +9,7 @@ namespace ChessAPI.GamePieces
             get { if (Color == true) { return "\u2657"; } else { return "\u265D"; } }
         }
 
-        public Bishop(Game game, bool color) : base(game, color)
+        public Bishop(GameState game, bool color) : base(game, color)
         {
             Type = PieceType.Bishop;
 

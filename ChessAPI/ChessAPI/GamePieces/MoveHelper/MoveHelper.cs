@@ -1,9 +1,11 @@
-﻿namespace ChessAPI.GamePieces.MoveHelper
+﻿using SharedCsharpModels.Models;
+
+namespace ChessAPI.GamePieces.MoveHelper
 {
     public static class MoveHelper
 
     {
-        public static bool LegalMoveVertical ((int,int) oldCoords, (int,int) newCooords, Game game, bool isUp)
+        public static bool LegalMoveVertical ((int,int) oldCoords, (int,int) newCooords, GameState game, bool isUp)
         {
             int plusMinus = isUp ? 1 : -1;
             if (oldCoords.Item1 != newCooords.Item1) return false;
@@ -18,15 +20,15 @@
             }
             return true;
         }
-        public static bool LegalMoveHorizontal((int, int) oldCoords, (int, int) newCooords, Game game, bool isRight)
+        public static bool LegalMoveHorizontal((int, int) oldCoords, (int, int) newCooords, GameState game, bool isRight)
         {
             return true;
         }
-        public static bool LegalMoveLeftDiagonal((int, int) oldCoords, (int, int) newCooords, Game game, bool isUp)
+        public static bool LegalMoveLeftDiagonal((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             return true;
         }
-        public static bool LegalMoveRightDiagonal((int, int) oldCoords, (int, int) newCooords, Game game, bool isUp)
+        public static bool LegalMoveRightDiagonal((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             return true;
         }

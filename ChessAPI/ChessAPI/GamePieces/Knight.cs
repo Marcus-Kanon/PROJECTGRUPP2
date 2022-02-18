@@ -1,4 +1,5 @@
-﻿using ChessAPI.Models;
+﻿using SharedCsharpModels.Models;
+
 
 namespace ChessAPI.GamePieces
 {
@@ -9,7 +10,7 @@ namespace ChessAPI.GamePieces
             get { if (Color == true) { return "\u2658"; } else { return "\u265E"; } }
         }
 
-        public Knight(Game game, bool color) : base(game, color)
+        public Knight(GameState game, bool color) : base(game, color)
         {
             Type = PieceType.Knight;
         }

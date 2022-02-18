@@ -20,11 +20,7 @@ namespace ChessAPI.Controllers
         [HttpGet]
         public string Get()
         { 
-            Game game = new Game();
-
-            _gamesService.Games.Add(game);
-
-            string json = JsonConvert.SerializeObject(game, Formatting.Indented);
+            string json = JsonConvert.SerializeObject(_gamesService.CreateNewGame(), Formatting.Indented);
 
             return json;
         }
