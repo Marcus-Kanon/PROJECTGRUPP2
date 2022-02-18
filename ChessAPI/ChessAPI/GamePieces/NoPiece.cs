@@ -5,11 +5,9 @@ namespace ChessAPI.GamePieces
     public class NoPiece : GamePiece
     {
         public override string Name { get; set; } = " ";
-        Game _game;
         
-        public NoPiece(Game game)
+        public NoPiece(Game game) : base(game, null)
         {
-            _game = game;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
