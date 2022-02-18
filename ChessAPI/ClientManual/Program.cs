@@ -93,10 +93,10 @@ while(true)
 
     //Väljer parametrar för Move API:n
     Console.WriteLine("Choose coordinates of piece to move: ");
-    Console.Write("old row: "); var oldX = Console.ReadLine();
-    Console.Write("old column: "); var oldY = Console.ReadLine();
-    Console.Write("new row: "); var newX = Console.ReadLine();
-    Console.Write("new column: "); var newY = Console.ReadLine();
+    Console.Write("old column: "); var oldX = Console.ReadLine();
+    Console.Write("old row: "); var oldY = Console.ReadLine();
+    Console.Write("new column: "); var newX = Console.ReadLine();
+    Console.Write("new row: "); var newY = Console.ReadLine();
 
     //Ansluter Move API:n
     results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1Id}/{oldX}/{oldY}/{newX}/{newY}");
