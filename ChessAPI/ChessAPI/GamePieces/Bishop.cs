@@ -8,6 +8,7 @@ namespace ChessAPI.GamePieces
 
         public Bishop(Game game, bool color) : base(game, color)
         {
+            Type = PieceType.Bishop;
         }
 
         public override string Move((int, int) oldCords, (int, int) newCords)
