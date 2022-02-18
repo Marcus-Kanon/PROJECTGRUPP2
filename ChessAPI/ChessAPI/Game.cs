@@ -39,11 +39,8 @@ namespace ChessAPI
                 }
             }
 
-
-            //Board[2, 0] = new King(this, true);
-
             Board = new GamePiece[BOARD_WIDTH, BOARD_WIDTH]
-{
+            {
                 { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Rook(this, false) },
                 { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Knight(this, false) },
                 { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Bishop(this, false) },
@@ -52,7 +49,7 @@ namespace ChessAPI
                 { new Bishop(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Bishop(this, false) },
                 { new Knight(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Knight(this, false) },
                 { new Rook(this, true), new Pawn(this, true), new NoPiece(this), new NoPiece(this), new NoPiece(this), new NoPiece(this), new Pawn(this, false), new Rook(this, false) },
-};
+            };
         }
 
         public void ChangePlayerTurn()

@@ -4,7 +4,10 @@ namespace ChessAPI.GamePieces
 {
     public class King : GamePiece
     {
-        public override string Name { get; set; } = "\u2654";
+        public override string Name
+        {
+            get { if (Color == true) { return "\u2654"; } else { return "\u265A"; } }
+        }
         
         public King(Game game, bool color) : base(game, color)
         {

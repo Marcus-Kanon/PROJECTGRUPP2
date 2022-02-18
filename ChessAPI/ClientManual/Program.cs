@@ -80,7 +80,10 @@ while(true)
                 Console.Write(y + " ");
             var name = game.Board[x, y]?.Name ?? "null";
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            Console.Write(VerticalSymbol + name + "  ");
+            if(game.Board[x,y].Name == "\u265F")
+                Console.Write(VerticalSymbol + name + " ");
+            else
+                Console.Write(VerticalSymbol + name + "  ");
         }
         Console.Write("|\n");
     }
