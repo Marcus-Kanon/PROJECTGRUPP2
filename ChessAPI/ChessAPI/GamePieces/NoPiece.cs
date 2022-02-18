@@ -11,9 +11,9 @@ namespace ChessAPI.GamePieces
             Type = PieceType.NoPiece;
         }
 
-        public override string Move((int, int) oldCords, (int, int) newCords)
+        public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
-            return "No Piece. Cannot move.";
+            return MoveValidationMessage.Succeeded;
         }
     }
 }

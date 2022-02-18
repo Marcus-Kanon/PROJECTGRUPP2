@@ -11,12 +11,12 @@ namespace ChessAPI.GamePieces
             Type = PieceType.Bishop;
         }
 
-        public override string Move((int, int) oldCords, (int, int) newCords)
+        public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
             _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
 
-            return "Successfully moved bishop... i think...";
+            return MoveValidationMessage.Succeeded;
         }
     }
 }

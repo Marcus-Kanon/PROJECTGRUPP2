@@ -1,7 +1,7 @@
 ﻿namespace ChessAPI.Models
 {
-    public class GamePiece : IGamePiece
-    {   
+    public partial class GamePiece : IGamePiece
+    {
         public virtual string Name { get; set; } = "";
         public virtual bool? Color { get; set; }
         public virtual PieceType Type { get; set; }
@@ -13,7 +13,7 @@
             _game = game;
         }
 
-        public virtual string Move((int, int) oldCords, (int, int) newCords)
+        public virtual MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             throw new NotImplementedException();
         }
@@ -28,6 +28,5 @@
             Queen,
             King
         }
-
     }
 }

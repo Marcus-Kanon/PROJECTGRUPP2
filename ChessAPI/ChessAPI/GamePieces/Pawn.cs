@@ -11,14 +11,14 @@ namespace ChessAPI.GamePieces
             Type = PieceType.Pawn;
         }
 
-        public override string Move((int, int) oldCords, (int, int) newCords)
+        public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
-            if (!(CheckLegalMove(oldCords, newCords))) { return "Illegal move"; }
+            if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
                 _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
-                return "Successfully moved pawn... i think...";
+                return MoveValidationMessage.Succeeded;
             }
         }
 
