@@ -7,5 +7,7 @@
         public string Player1Id { get; set; }
         public string Player2Id { get; set; }
         public string PlayerTurnId { get; set; }
+        public string? IsCheckedPlayerId { get; set; }
+        public string? IsCheckmatedPlayerId { get; set; }
     }
 }
