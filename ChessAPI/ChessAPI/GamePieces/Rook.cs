@@ -17,5 +17,19 @@ namespace ChessAPI.GamePieces
             _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
             return "Successfully moved rook... i think...";
         }
+
+        public bool CheckLegalMove((int, int) first, (int, int) second)
+        {
+            if (first.Item2 == second.Item2)
+            {
+                return MoveHelper.LegalMoveHorizontal(first, second, _game, (first.Item1 < second.Item1));
+
+            }
+            else if (first.Item1 == second.Item1)
+            {
+                return MoveHelper.LegalMoveVertical(first, second, _game, (first.Item2 < second.Item2));
+            }
+            else return false;
+        }
     }
 }

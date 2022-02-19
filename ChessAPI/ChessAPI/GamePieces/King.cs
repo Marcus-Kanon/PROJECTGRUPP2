@@ -13,10 +13,20 @@ namespace ChessAPI.GamePieces
 
         public override string Move((int, int) oldCords, (int, int) newCords)
         {
-            _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
+            if (!(CheckLegalMove(oldCords, newCords))) { return "Illegal move"; }
+            else
+            {
+                _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
+                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
 
-            return "Successfully moved king... i think...";
+                return "Successfully moved king... i think...";
+            }
         }
+
+        public bool CheckLegalMove((int, int) first, (int, int) second)
+        {
+            return true;
+        }
+
     }
 }
