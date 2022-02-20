@@ -7,7 +7,8 @@ namespace ChessAPI.GamePieces
     {
         public override string Name
         {
-            get { if (Color == true) { return "\u2655"; } else { return "\u265B"; } }
+            //get { if (Color == true) { return "\u2655"; } else { return "\u265B"; } }
+            get => "\u2655";
         }
 
         public Queen(GameState game, bool color) : base(game, color)

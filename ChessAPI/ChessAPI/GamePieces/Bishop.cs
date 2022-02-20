@@ -6,7 +6,8 @@ namespace ChessAPI.GamePieces
     {
         public override string Name
         {
-            get { if (Color == true) { return "\u2657"; } else { return "\u265D"; } }
+            //get { if (Color == true) { return "\u2657"; } else { return "\u265D"; } }
+            get => "\u2657";
         }
 
         public Bishop(GameState game, bool color) : base(game, color)
