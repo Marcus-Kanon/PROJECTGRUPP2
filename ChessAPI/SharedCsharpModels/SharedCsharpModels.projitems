@@ -9,12 +9,14 @@
     <Import_RootNamespace>SharedCsharpModels</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Color.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GamePiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\GameState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IGamePiece.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\MoveValidationMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\PieceType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)View\Print.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Interfaces\" />

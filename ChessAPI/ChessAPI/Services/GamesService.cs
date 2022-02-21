@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿//using System.Drawing;
 using ChessAPI.GamePieces;
 using SharedCsharpModels.Models;
 
@@ -25,9 +25,8 @@ namespace ChessAPI
             string player2Id = rnd.Next(0, 10000000).ToString();
 
             game.GameId = rnd.Next(0, 10000000).ToString();
-            game.Player1 = new(player1Id);
-            game.Player2 = new(player2Id);
-            game.PlayerTurnId = player1Id;
+            game.Player1 = new(player1Id, Color.Light);
+            game.Player2 = new(player2Id, Color.Dark);
             game.Board = CreateBoard(BOARD_WIDTH, BOARD_HEIGHT, game);
 
             Games.Add(game);
@@ -45,66 +44,23 @@ namespace ChessAPI
             {
                 for (int y = 0; y < boardHeight; y++)
                 {
-                    Board[x, y] = new NoPiece(game);
+                    Board[x, y] = new NoPiece(game, Color.Empty);
                 }
             }
 
             Board = new GamePiece[BOARD_WIDTH, BOARD_HEIGHT]
             {
-                { new Rook(game, false), new Knight(game, false), new Bishop(game, false), new Queen(game, false), new King(game, false), new Bishop(game, false), new Knight(game, false), new Rook(game, false) },
-                { new Pawn(game, false), new Pawn(game, false), new Pawn(game, false), new Pawn(game, false), new Pawn(game, false), new Pawn(game, false), new Pawn(game, false), new Pawn(game, false) },
-                { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
-                { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
-                { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
-                { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
-                { new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true) },
-                { new Rook(game, true), new Knight(game, true), new Bishop(game, true), new King(game, true), new Queen(game, true), new Bishop(game, true), new Knight(game, true), new Rook(game, true) },
+                { new Rook(game, Color.Dark), new Knight(game, Color.Dark), new Bishop(game, Color.Dark), new Queen(game, Color.Dark), new King(game, Color.Dark), new Bishop(game, Color.Dark), new Knight(game, Color.Dark), new Rook(game, Color.Dark) },
+                { new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark) },
+                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
+                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
+                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
+                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
+                { new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light) },
+                { new Rook(game, Color.Light), new Knight(game, Color.Light), new Bishop(game, Color.Light), new King(game, Color.Light), new Queen(game, Color.Light), new Bishop(game, Color.Light), new Knight(game, Color.Light), new Rook(game, Color.Light) },
             };
 
             return Board;
         }
-
-        /* TODO: Behöver se hur MoveHelper blir för att implementera så man kan se vart man kan röra sin pjäs (om vi vill ha med det)
-        public void DisplayNextLegalMoves(GamePiece currentCell, GamePiece chessPiece)
-        {
-            // step 1 - clear all previous legal moves
-            for (int i = 0; i < BOARD_WIDTH; i++)
-            {
-                for (int j = 0; j < BOARD_HEIGHT; j++)
-                {
-                    Board[i, j].IsLegalMove = false;
-                    Board[i, j].CurrentlyOccupied = false;
-                }
-            }
-
-
-            // step 2 - find all legal moves and mark the cells as "legal"
-            switch (chessPiece)
-            {
-                case Knight:
-                    theGrid[currentCell.RowNumber + 2, currentCell.ColumnNumber + 1].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber + 2, currentCell.ColumnNumber - 1].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber - 2, currentCell.ColumnNumber + 1].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber - 2, currentCell.ColumnNumber - 1].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber + 1, currentCell.ColumnNumber + 2].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber + 1, currentCell.ColumnNumber - 2].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber - 1, currentCell.ColumnNumber + 2].LegalNextMove = true;
-                    theGrid[currentCell.RowNumber - 1, currentCell.ColumnNumber - 2].LegalNextMove = true;
-                    break;
-                case King:
-                    break;
-                case Rook:
-                    break;
-                case Bishop:
-                    break;
-                case Queen:
-                    break;
-                default:
-                    break;
-
-            }
-            Board[currentCell.BOARD_WIDTH, currentCell.BOARD_HEIGHT].CurrentlyOccupied = true;
-        }
-        */
     }
 }
