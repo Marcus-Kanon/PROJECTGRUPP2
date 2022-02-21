@@ -33,8 +33,8 @@ GameState game = JsonConvert.DeserializeObject<GameState>(results);
 
 //Skriver ut några properties från vårat objekt
 Console.WriteLine("GameId: " + game.GameId);
-Console.WriteLine("Player1Id: " + game.Player1.PlayerID);
-Console.WriteLine("Player2d: " + game.Player2.PlayerID);
+Console.WriteLine("Player1 Id: " + game.Player1.Id);
+Console.WriteLine("Player2 Id: " + game.Player2.Id);
 Console.WriteLine("Press Enter to Continue");
 Console.ReadLine();
 
@@ -47,7 +47,7 @@ Console.ReadLine();
 while (true)
 {
     //Ansluter API med parametrar GameId/Player1Id
-    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1.PlayerID);
+    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1.Id);
 
     //Deserialiserar svaret vi får
     game = JsonConvert.DeserializeObject<GameState>(results);
@@ -75,7 +75,7 @@ while (true)
 
 
     //Ansluter Move API:n
-    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1.PlayerID}/{oldX}/{oldY}/{newX}/{newY}");
+    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1.Id}/{oldX}/{oldY}/{newX}/{newY}");
 
     //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
     string message = results;
@@ -142,12 +142,18 @@ void printChessBoard()
                 if (game.Board[row, column].Color == false)
                 {
                     Console.ForegroundColor = ConsoleColor.Black;
-                    Console.Write($" {name}  ");
+                    if(name == "\u265F")
+                        Console.Write($" {name} ");
+                    else
+                        Console.Write($" {name}  ");
                 }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write($" {name}  ");
+                    if (name == "\u265F")
+                        Console.Write($" {name} ");
+                    else
+                        Console.Write($" {name}  ");
                 }
             }
             Console.ResetColor();

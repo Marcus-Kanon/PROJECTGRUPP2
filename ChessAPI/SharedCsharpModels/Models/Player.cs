@@ -1,27 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SharedCsharpModels.Models
+﻿namespace SharedCsharpModels.Models
 {
     public class Player
     {
-        public string PlayerID { get; set; }
+        public string Id { get; set; }
         public bool Color { get; set; }
         public bool IsPlayerTurn { get; set; } 
         public bool IsCheckedPlayerId { get; set; }
         public bool IsCheckmatedPlayerId { get; set; }
         public bool IsLegalMove { get; set; }
 
-        public Player(string playerId, bool color)
+        //public Player(string playerId, bool color)
+        //{
+        //    Id = playerId;
+        //    Color = color;
+        //}
+
+        public Player(string playerId)
         {
-            PlayerID = playerId;
-            Color = color;
+            Id = playerId;
         }
 
-        public Player GetPlayer()
-        {
-            return new Player(PlayerID, Color);
-        }
+        //public Player GetPlayer()
+        //{
+        //    return new Player(Id, Color);
+        //}
     }
 }

@@ -27,7 +27,7 @@ namespace ChessAPI.Controllers
             if (game == null)
                 return "No game found";
 
-            if (playerId != game.MovingPlayer.PlayerID)
+            if (playerId != game.PlayerTurnId)
                 return "Not your turn";
 
             if (game.Board[oldX, oldY] == null)

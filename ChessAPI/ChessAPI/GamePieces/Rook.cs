@@ -5,7 +5,7 @@ namespace ChessAPI.GamePieces
 {
     public class Rook : GamePiece
     {
-        public override string Name { get => "\u2656"; }
+        public override string Name { get => "\u265C"; }
 
         public Rook(GameState game, bool color) : base(game, color)
         {

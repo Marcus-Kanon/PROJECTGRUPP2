@@ -22,11 +22,12 @@ namespace ChessAPI
             GameState game = new();
 
             string player1Id = rnd.Next(0, 10000000).ToString();
+            string player2Id = rnd.Next(0, 10000000).ToString();
 
             game.GameId = rnd.Next(0, 10000000).ToString();
-            game.Player1.PlayerID = player1Id;
-            game.Player2.PlayerID = rnd.Next(0, 10000000).ToString();
-            game.MovingPlayer.PlayerID = player1Id;
+            game.Player1 = new(player1Id);
+            game.Player2 = new(player2Id);
+            game.PlayerTurnId = player1Id;
             game.Board = CreateBoard(BOARD_WIDTH, BOARD_HEIGHT, game);
 
             Games.Add(game);
@@ -57,7 +58,7 @@ namespace ChessAPI
                 { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
                 { new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game) },
                 { new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true), new Pawn(game, true) },
-                { new Rook(game, true), new Knight(game, true), new Bishop(game, true), new Queen(game, true), new King(game, true), new Bishop(game, true), new Knight(game, true), new Rook(game, true) },
+                { new Rook(game, true), new Knight(game, true), new Bishop(game, true), new King(game, true), new Queen(game, true), new Bishop(game, true), new Knight(game, true), new Rook(game, true) },
             };
 
             return Board;
