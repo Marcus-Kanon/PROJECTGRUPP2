@@ -23,7 +23,7 @@ namespace ChessAPI.Controllers
         public string Get(string gameId, string playerId)
         {
             GameState game = _gamesService.Games
-                .FirstOrDefault(q => q.GameId == gameId && (q.Player1Id == playerId || q.Player2Id == playerId));
+                .FirstOrDefault(q => q.GameId == gameId && (q.Player1.PlayerID == playerId || q.Player2.PlayerID == playerId));
 
             var json = JsonConvert.SerializeObject(game);
 

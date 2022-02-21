@@ -6,10 +6,28 @@ namespace ChessAPI
     {
         public void ChangePlayerTurn()
         {
-            if (Player1Id == PlayerTurnId)
-                PlayerTurnId = Player2Id;
+            if (Player1.IsPlayerTurn)
+            {
+                Player1.IsPlayerTurn = false;
+                Player2.IsPlayerTurn = true;
+            }
             else
-                PlayerTurnId = Player1Id;
+            {
+                Player1.IsPlayerTurn = true;
+                Player2.IsPlayerTurn = false;
+            }
+        }
+
+        public void Turn(Player player)
+        {
+            if (player.Color)
+            {
+                Console.WriteLine($"{Player1.PlayerID}'s turn.");
+            }
+            else
+            {
+                Console.WriteLine($"{Player2.PlayerID}'s turn.");
+            }
         }
     }
 }

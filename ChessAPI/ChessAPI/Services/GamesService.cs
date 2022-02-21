@@ -24,9 +24,9 @@ namespace ChessAPI
             string player1Id = rnd.Next(0, 10000000).ToString();
 
             game.GameId = rnd.Next(0, 10000000).ToString();
-            game.Player1Id = player1Id;
-            game.Player2Id = rnd.Next(0, 10000000).ToString();
-            game.PlayerTurnId = player1Id;
+            game.Player1.PlayerID = player1Id;
+            game.Player2.PlayerID = rnd.Next(0, 10000000).ToString();
+            game.MovingPlayer.PlayerID = player1Id;
             game.Board = CreateBoard(BOARD_WIDTH, BOARD_HEIGHT, game);
 
             Games.Add(game);
