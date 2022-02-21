@@ -20,15 +20,18 @@ namespace ChessAPI.Controllers
         // GET: api/<Move>
         [Route("api/[controller]/{gameId}/{playerId}/{oldX}/{oldY}/{newX}/{newY}")]
         [HttpGet]
-        public string Get(string gameId, string playerId, int newX, int newY, int oldX, int oldY)
+        public string Get(string gameId, bool playerTurn, int newX, int newY, int oldX, int oldY)
         {
             GameState game = _gamesService.Games.FirstOrDefault(q => q.GameId == gameId);
 
             if (game == null)
                 return "No game found";
 
-            if (playerId != game.PlayerTurnId)
-                return "Not your turn";
+            if (playerTurn != game.Player1.IsPlayerTurn)
+                return $"Not your turn {game.Player1.Id}";
+
+            if (playerTurn != game.Player2.IsPlayerTurn)
+                return $"Not your turn {game.Player2.Id}";
 
             if (game.Board[oldX, oldY] == null)
                 return "Position is null";

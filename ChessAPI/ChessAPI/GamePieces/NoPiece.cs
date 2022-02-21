@@ -6,7 +6,7 @@ namespace ChessAPI.GamePieces
     {
         public override string Name { get; set; } = " ";
         
-        public NoPiece(GameState game) : base(game, null)
+        public NoPiece(GameState game, Color color) : base(game, color)
         {
             Type = PieceType.NoPiece;
         }

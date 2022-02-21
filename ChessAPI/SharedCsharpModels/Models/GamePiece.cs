@@ -3,11 +3,12 @@
     public partial class GamePiece : IGamePiece
     {
         public virtual string Name { get; set; } = "";
-        public virtual bool? Color { get; set; }
+        public virtual Color Color { get; set; }
         public virtual PieceType Type { get; set; }
         protected GameState _game;
+        public bool LegalNextMove { get; set; }
 
-        public GamePiece(GameState game, bool? color)
+        public GamePiece(GameState game, Color color)
         {
             Color = color;
             _game = game;

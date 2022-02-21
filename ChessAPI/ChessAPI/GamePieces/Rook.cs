@@ -5,13 +5,9 @@ namespace ChessAPI.GamePieces
 {
     public class Rook : GamePiece
     {
-        public override string Name
-        {
-            //get { if (Color == true) { return "\u2656"; } else { return "\u265C"; } }
-            get => "\u2656";
-        }
+        public override string Name { get => "\u265C"; }
 
-        public Rook(GameState game, bool color) : base(game, color)
+        public Rook(GameState game, Color color) : base(game, color)
         {
             Type = PieceType.Rook;
         }
@@ -19,7 +15,7 @@ namespace ChessAPI.GamePieces
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
+            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
             return MoveValidationMessage.Succeeded;
         }
     }
