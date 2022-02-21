@@ -18,16 +18,16 @@ namespace ChessAPI
         //    }
         //}
 
-        //public void Turn(Player player)
-        //{
-        //    if (player.Color)
-        //    {
-        //        Console.WriteLine($"{Player1.PlayerID}'s turn.");
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine($"{Player2.PlayerID}'s turn.");
-        //    }
-        //}
+        public static void Turn(Player player)
+        {
+            if (player.Color == Color.Light)
+            {
+                Console.Write($"Player {player.Id}'s (WHITE) turn: ");
+            }
+            else
+            {
+                Console.Write($"Player {player.Id}'s (BLACK) turn: ");
+            }
+        }
     }
 }

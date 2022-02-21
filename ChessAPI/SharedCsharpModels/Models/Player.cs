@@ -15,5 +15,6 @@
             Id = playerId;
             Color = color;
         }
+
     }
 }

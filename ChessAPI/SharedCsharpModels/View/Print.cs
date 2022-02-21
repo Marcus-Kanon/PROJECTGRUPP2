@@ -98,7 +98,7 @@ namespace SharedCsharpModels.View
             Console.WriteLine("============================================");
         }
 
-        public static void printStats(GameState game)
+        public static void Stats(GameState game)
         {
             Console.WriteLine("GameId: " + game.GameId);
             Console.WriteLine("Player1 Id: " + game.Player1.Id);
@@ -107,6 +107,18 @@ namespace SharedCsharpModels.View
             Console.ReadLine();
         }
 
-        
+        public static void Turn(Player player)
+        {
+            if (player.Color == Color.Light)
+            {
+                Console.Write($"Player {player.Id}'s (WHITE) turn: ");
+            }
+            else
+            {
+                Console.Write($"Player {player.Id}'s (BLACK) turn: ");
+            }
+        }
+
+
     }
 }

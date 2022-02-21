@@ -68,9 +68,9 @@ while (true)
 
     //show the empty chess board
     if (counter % 2 != 0)
-        game.Turn(game.Player1);
+        Print.Turn(game.Player1);
     else
-        game.Turn(game.Player2);
+        Print.Turn(game.Player2);
 
     Print.ChessBoard(counter, game);
 
@@ -83,17 +83,6 @@ while (true)
     Console.Write("new row (vertical):: "); var newX = Console.ReadLine();
     Console.Write("new column (horizontal): "); var newY = Console.ReadLine();
 
-    /* TO DO?? 
-    //ask the user for an x and y coordinate where we will place a piece
-    Cell currentCell = setCurrentCell(myBoard);
-    currentCell.CurrentlyOccupied = true;
-
-    // visa alla "legal moves" för vald pjäs
-    DisplayNextLegalMoves();
-
-    //printa schackbrädan igen med alla "legal moves". 
-    printChessBoard();
-    */
 
     //Ansluter Move API:n
     //if (counter % 2 == 0)
