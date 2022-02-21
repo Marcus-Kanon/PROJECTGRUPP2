@@ -25,14 +25,49 @@ string VerticalSymbol = "| ";
  */
 
 //Results innehåller svaret vi får från vår API
-string results = new WebClient().DownloadString("https://localhost:7223/api/CreateGame");
+string results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
 
-/*
- * 4. Eftersom svaret vi får från vår API är ett serialiserat objekt, altså en Json-sträng. Så måste vi deserialisera det:
- */
+Console.WriteLine("Do you want to start a (n)ew game or (j)oin an existing one?");
+var userChoice = Console.ReadKey();
 
-//Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
-GameState game = JsonConvert.DeserializeObject<GameState>(results);
+GameState game = null;
+
+if (userChoice.Key == ConsoleKey.N)
+{
+    results = new WebClient().DownloadString("https://localhost:7223/api/game/create");
+
+    /*
+    * 4. Eftersom svaret vi får från vår API är ett serialiserat objekt, altså en Json-sträng. Så måste vi deserialisera det:
+    */
+
+    //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
+    game = JsonConvert.DeserializeObject<GameState>(results);
+}
+else if (userChoice.Key == ConsoleKey.J)
+{
+    results = new WebClient().DownloadString("https://localhost:7223/api/game/list");
+
+    var gameStates = JsonConvert.DeserializeObject<List<GameState>>(results);
+
+    Console.Clear();
+
+    var i = 0;
+
+    foreach (var match in gameStates)
+    {
+        Console.WriteLine($"Game Id: [{i}] {match.GameId}");
+        i++;
+    }
+
+    Console.Write("Select Game: ");
+
+    int.TryParse(Console.ReadLine(), out var gameIdChoice);
+    game = gameStates[gameIdChoice];
+}
 
 /* TEST FÖR ATT FIXA FONTEN SÅ MAN KAN LÄSA PJÄSTECKEN, SKA TAS BORT
 Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -53,7 +88,7 @@ Console.ReadLine();
  * Om vi ska kalla på GetBoard så behöver vi ange ett GameId och ett PlayerId:
  */
 
-while(true)
+while (true)
 {
     //Ansluter API med parametrar GameId/Player1Id
     results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1Id);
@@ -76,11 +111,11 @@ while(true)
 
         for (int x = 0; x < BOARD_WIDTH; x++)
         {
-            if(x == 0)
+            if (x == 0)
                 Console.Write(y + " ");
             var name = game.Board[x, y]?.Name ?? "null";
             Console.OutputEncoding = System.Text.Encoding.UTF8;
-            if(game.Board[x,y].Name == "\u265F")
+            if (game.Board[x, y].Name == "\u265F")
                 Console.Write(VerticalSymbol + name + " ");
             else
                 Console.Write(VerticalSymbol + name + "  ");
