@@ -25,7 +25,7 @@ string VerticalSymbol = "| ";
  */
 
 //Results innehåller svaret vi får från vår API
-string results = new WebClient().DownloadString("https://localhost:7223/api/CreateGame");
+string results = new WebClient().DownloadString("http://localhost:7223/api/CreateGame");
 
 /*
  * 4. Eftersom svaret vi får från vår API är ett serialiserat objekt, altså en Json-sträng. Så måste vi deserialisera det:
@@ -56,7 +56,7 @@ Console.ReadLine();
 while(true)
 {
     //Ansluter API med parametrar GameId/Player1Id
-    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1Id);
+    results = new WebClient().DownloadString("http://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1Id);
 
     //Deserialiserar svaret vi får
     game = JsonConvert.DeserializeObject<GameState>(results);
@@ -99,7 +99,7 @@ while(true)
     Console.Write("new row: "); var newY = Console.ReadLine();
 
     //Ansluter Move API:n
-    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1Id}/{oldX}/{oldY}/{newX}/{newY}");
+    results = new WebClient().DownloadString("http://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1Id}/{oldX}/{oldY}/{newX}/{newY}");
 
     //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
     string message = results;

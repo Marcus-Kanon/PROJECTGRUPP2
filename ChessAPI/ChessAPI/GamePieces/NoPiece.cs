@@ -15,5 +15,8 @@ namespace ChessAPI.GamePieces
         {
             return "No Piece. Cannot move.";
         }
-    }
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
+        {
+            return false;
+        }
 }

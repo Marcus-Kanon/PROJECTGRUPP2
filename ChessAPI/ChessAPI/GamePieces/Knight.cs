@@ -4,7 +4,8 @@ namespace ChessAPI.GamePieces
 {
     public class Knight : GamePiece
     {
-        public override string Name { get; set; } = "\u2658";
+        //public override string Name { get; set; } = "\u2658";
+        public override string Name { get; set; } = "k";
 
         public Knight(Game game, bool color) : base(game, color)
         {
@@ -24,7 +25,7 @@ namespace ChessAPI.GamePieces
 
 
         }
-        public bool CheckLegalMove((int, int) first, (int, int) second)
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             return (Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1 && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color));
  

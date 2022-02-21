@@ -4,7 +4,8 @@ namespace ChessAPI.GamePieces
 {
     public class Pawn : GamePiece
     {
-        public override string Name { get; set; } = "\u2659";  //white pawn unicode
+        //public override string Name { get; set; } = "\u2659";  //white pawn unicode
+        public override string Name { get; set; } = "P";  //white pawn unicode
 
         public Pawn(Game game, bool color) : base(game, color)
         {
@@ -22,7 +23,7 @@ namespace ChessAPI.GamePieces
             }
         }
 
-        public bool CheckLegalMove((int, int) first, (int, int) second)
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             return (
                     //first.Item1 < 8 && first.Item1 >=0 && first.Item1 < 8 && first.Item1 >= 0 ORKAR INTE MED DETTA, Gör koordinaterna till objekt, sätt 0<=x,y<=7 i accessorerna

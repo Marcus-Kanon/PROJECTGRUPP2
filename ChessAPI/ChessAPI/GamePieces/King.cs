@@ -4,8 +4,9 @@ namespace ChessAPI.GamePieces
 {
     public class King : GamePiece
     {
-        public override string Name { get; set; } = "\u2654";
-        
+        //public override string Name { get; set; } = "\u2654";        
+        public override string Name { get; set; } = "K";
+
         public King(Game game, bool color) : base(game, color)
         {
             Type = PieceType.King;
@@ -23,8 +24,9 @@ namespace ChessAPI.GamePieces
             }
         }
 
-        public bool CheckLegalMove((int, int) first, (int, int) second)
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
+            //return !CanAnyMoveTo(second) 
             return true;
         }
 

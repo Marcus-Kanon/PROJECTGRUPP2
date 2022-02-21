@@ -4,7 +4,8 @@ namespace ChessAPI.GamePieces
 {
     public class Queen : GamePiece
     {
-        public override string Name { get; set; } = "\u2655";
+        //public override string Name { get; set; } = "\u2655";
+        public override string Name { get; set; } = "Q";
 
         public Queen(Game game, bool color) : base(game, color)
         {
@@ -24,7 +25,7 @@ namespace ChessAPI.GamePieces
 
 
         }
-        public bool CheckLegalMove((int, int) first, (int, int) second)
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             if (first.Item2 == second.Item2)
             {
