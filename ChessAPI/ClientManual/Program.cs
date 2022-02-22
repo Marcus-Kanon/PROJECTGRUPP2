@@ -22,14 +22,56 @@ ConsoleHelper.SetCurrentFont("MS Gothic", 20); //för att få schackpjäserna at
  */
 
 //Results innehåller svaret vi får från vår API
-string results = new WebClient().DownloadString("https://localhost:7223/api/CreateGame");
+string results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+
+Console.WriteLine("Do you want to start a (n)ew game or (j)oin an existing one?");
+var userChoice = Console.ReadKey();
+
+GameState game = null;
+
+if (userChoice.Key == ConsoleKey.N)
+{
+    results = new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
+
+    /*
+    * 4. Eftersom svaret vi får från vår API är ett serialiserat objekt, altså en Json-sträng. Så måste vi deserialisera det:
+    */
+
+    //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
+    game = JsonConvert.DeserializeObject<GameState>(results);
+}
+else if (userChoice.Key == ConsoleKey.J)
+{
+    results = new WebClient().DownloadString("https://localhost:7223/api/creategame/list");
+
+    var gameStates = JsonConvert.DeserializeObject<List<GameState>>(results);
+
+    Console.Clear();
+
+    var i = 0;
+
+    foreach (var match in gameStates)
+    {
+        Console.WriteLine($"Game Id: [{i}] {match.GameId}");
+        i++;
+    }
+
+    Console.Write("Select Game: ");
+
+    int.TryParse(Console.ReadLine(), out var gameIdChoice);
+    game = gameStates[gameIdChoice];
+}
 
 /*
  * 4. Eftersom svaret vi får från vår API är ett serialiserat objekt, altså en Json-sträng. Så måste vi deserialisera det:
  */
 
 //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
-GameState game = JsonConvert.DeserializeObject<GameState>(results);
+//GameState game = JsonConvert.DeserializeObject<GameState>(results);
 
 GamePiece gamePiece = new(game, Color.Dark);
 gamePiece.Name = "\u265E";
@@ -48,7 +90,6 @@ int counter = 0;
 //TODO ------------------- FIXA MENYN
 Console.Clear();
 Print.Header();
-Print.Menu();
 Console.ReadLine();
 
 while (true)
