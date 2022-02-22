@@ -50,15 +50,25 @@ namespace ChessAPI
 
             Board = new GamePiece[BOARD_WIDTH, BOARD_HEIGHT]
             {
-                { new Rook(game, Color.Dark), new Knight(game, Color.Dark), new Bishop(game, Color.Dark), new Queen(game, Color.Dark), new King(game, Color.Dark), new Bishop(game, Color.Dark), new Knight(game, Color.Dark), new Rook(game, Color.Dark) },
-                { new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark), new Pawn(game, Color.Dark) },
-                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
-                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
-                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
-                { new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty) },
-                { new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light), new Pawn(game, Color.Light) },
-                { new Rook(game, Color.Light), new Knight(game, Color.Light), new Bishop(game, Color.Light), new King(game, Color.Light), new Queen(game, Color.Light), new Bishop(game, Color.Light), new Knight(game, Color.Light), new Rook(game, Color.Light) },
+                { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark),   new Rook(game, Color.Dark) },
+                { new Knight(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark),     new Knight(game, Color.Dark) },
+                { new Bishop(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Bishop(game, Color.Dark) },
+                { new King(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Queen(game, Color.Dark) },
+                { new Queen(game, Color.Light),  new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new King(game, Color.Dark) },
+                { new Bishop(game, Color.Light), new Pawn(game, Color.Light),      new NoPiece(game, Color.Empty),new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Bishop(game, Color.Dark) },
+                { new Knight(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark),    new Knight(game, Color.Dark) },
+                { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark),  new Rook(game, Color.Dark) },
             };
+
+            //{ new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
+            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
+            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
+            //    { new Queen(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new King(game, false) },
+            //    { new King(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Queen(game, false) },
+            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
+            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
+            //    { new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
+            //}
 
             return Board;
         }

@@ -13,7 +13,8 @@ namespace ChessAPI.GamePieces
 
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
-            return MoveValidationMessage.Succeeded;
+
+            return MoveValidationMessage.IllegalMove;
         }
     }
 }

@@ -50,10 +50,13 @@ namespace SharedCsharpModels.View
                     else
                         Console.BackgroundColor = ConsoleColor.DarkGray;
 
-                    var name = game.Board[row, column]?.Name ?? "null";
+                    //var name = game.Board[row, column]?.Name ?? "null";
+                    var name = game.Board[column, row]?.Name ?? "null";
+
                     Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-                    if (game.Board[row, column].Color == Color.Dark)
+                    //if (game.Board[row, column].Color == Color.Dark)
+                    if (game.Board[column, row].Color == Color.Dark)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
                         if (name == "\u265F")
@@ -69,8 +72,9 @@ namespace SharedCsharpModels.View
                         else
                             Console.Write($" {name}  ");
                     }
-                    
-                    if (game.Board[row, column].LegalNextMove)
+
+                    //if (game.Board[row, column].LegalNextMove)
+                    if (game.Board[column, row].LegalNextMove)
                     {
                         Console.Write("  XX  ");
                     }
