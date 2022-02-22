@@ -6,6 +6,7 @@ namespace ChessAPI.GamePieces
     public class Pawn : GamePiece
     {
         public override string Name { get => "\u265F"; }
+        //public override string Name { get => "P"; }
 
         public Pawn(GameState game, Color color) : base(game, color)
         {
@@ -23,25 +24,50 @@ namespace ChessAPI.GamePieces
             }
         }
 
-        public bool CheckLegalMove((int, int) first, (int, int) second)
+        public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
+            //return true;
+
+
             return (
-                        //(second.Item2 - first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2] is NoPiece && this.Color == true)  // vanligt drag vit
-                   (second.Item2 - first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name==" "   ) // vanligt drag vit  
+                //first.Item1 < 8 && first.Item1 >=0 && first.Item1 < 8 && first.Item1 >= 0 ORKAR INTE MED DETTA, Gör koordinaterna till objekt, sätt 0<=x,y<=7 i accessorerna
+                //  && this.Color == true) funkar inte
+                (second.Item2 - first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Light) // vanligt drag vit  
+                 ||
+                 //(second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Dark) // vanligt drag svart
+                 (second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " ") // vanligt drag svart
+                 ||
+                (second.Item2 == 3 && first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && _game.Board[second.Item1, 2].Name == " " && this.Color == Color.Light) // två steg tillåtet första drag vit
+                 ||                                                                                                                                                                                                //||
+                (second.Item2 == 4 && first.Item2 == 6 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && _game.Board[second.Item1, 5].Name == " " && this.Color == Color.Dark) // två steg tillåtet första drag svart
+                ||
+                (second.Item2 - first.Item2 == 1 && Math.Abs(second.Item1 - first.Item1) == 1 && _game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == Color.Dark)  // slag vit
+                ||
+                (second.Item2 - first.Item2 == -1 && Math.Abs(second.Item1 - first.Item1) == 1 && _game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == Color.Light)  // slag svart
+
+                   ////////////////
+                   ///
+                   //(second.Item1 - first.Item1 == 1 && second.Item2 == first.Item2 && _game.Board[second.Item2, second.Item1].Name == " " && this.Color == Color.Light) // vanligt drag vit  
+                   // ||
+                   // (second.Item1 - first.Item1 == -1 && second.Item2 == first.Item2 && _game.Board[second.Item2, second.Item1].Name == " " && this.Color == Color.Dark) // vanligt drag svart
+
+                   // ||
+                   //(second.Item1 == 3 && first.Item1 == 1 && second.Item2 == first.Item2 && _game.Board[second.Item2, second.Item1].Name == " " && _game.Board[2, second.Item2].Name == " " && this.Color == Color.Light) // två steg tillåtet första drag vit
+                   // ||                                                                                                                                                                                                //||
+                   //(second.Item1 == 4 && first.Item1 == 6 && second.Item2 == first.Item2 && _game.Board[second.Item2, second.Item1].Name == " " && _game.Board[5, second.Item2].Name == " " && this.Color == Color.Dark) // två steg tillåtet första drag svart
+                   //||
+                   //(second.Item1 - first.Item1 == 1 && Math.Abs(second.Item2 - first.Item2) == 1 && _game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == Color.Dark)  // slag vit
+                   //||
+                   //(second.Item1 - first.Item1 == -1 && Math.Abs(second.Item2 - first.Item2) == 1 && _game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == Color.Light)  // slag svart
+
+                   ////////////////
 
 
-                   //||
-                   ////(second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2] is NoPiece && this.Color == false) //svart
-                    ||
-                   ( second.Item2 == 3 &&   first.Item2 == 1 && second.Item1 == first.Item1 &&  _game.Board[second.Item1, second.Item2].Name==" "  && _game.Board[second.Item1, 2].Name==" "  ) // två steg tillåtet första drag vit
-                   //||
-                   ////(second.Item2 == 4 && first.Item2 == 6 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2] is NoPiece && _game.Board[second.Item1, 5] is NoPiece && this.Color == false) // två steg tillåtet första drag svart
-                   ||
-                   (second.Item2 - first.Item2 == 1 && Math.Abs(second.Item1 - first.Item1) == 1 &&  _game.Board[second.Item1, second.Item2].Name!=" " && _game.Board[second.Item1, second.Item2].Color != this.Color )  // slag vit
-                   //||
-                   ////(second.Item2 - first.Item2 == -1 && Math.Abs(second.Item1 - first.Item1) == 1 && _game.Board[second.Item1, second.Item2] is not NoPiece && _game.Board[second.Item1, second.Item2].Color != this.Color)  // slag svart
 
-                   );
+
+
+
+                   ) ;
         }
 
     }
