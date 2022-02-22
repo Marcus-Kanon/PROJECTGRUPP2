@@ -1,21 +1,19 @@
-﻿using ChessAPI.Models;
+﻿using SharedCsharpModels.Models;
 
 namespace ChessAPI.GamePieces
 {
     public class NoPiece : GamePiece
     {
-        public override string Name { get; set; } = " No ";
-        GamePiece[,] _board;
+        public override string Name { get; set; } = " ";
         
-        public NoPiece(GamePiece [,] board)
+        public NoPiece(GameState game, Color color) : base(game, color)
         {
-            _board = board;
-
+            Type = PieceType.NoPiece;
         }
 
-        public override string Move((int, int) oldCords, (int, int) newCords)
+        public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
-            return "No Piece. Cannot move.";
+            return MoveValidationMessage.Succeeded;
         }
     }
 }

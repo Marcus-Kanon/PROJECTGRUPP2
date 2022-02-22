@@ -5,35 +5,30 @@ using Newtonsoft.Json;
 
 namespace ChessAPI.Controllers
 {
-    [ApiController]
+    [ApiController, Route("api/[controller]")]
     public class CreateGame : ControllerBase
     {
-        IGamesService _myclass;
+        IGamesService _gamesService;
 
-        public CreateGame(IGamesService myclass)
+        public CreateGame(IGamesService gameService)
         {
-            _myclass = myclass;
+            _gamesService = gameService;
         }
 
-        // GET: api/<CreateGame>
-        [Route("api/[controller]")]
-        [HttpGet]
-        public string Get()
+        // CREATE: api/creategame/create
+        [HttpGet("create")]
+        public string Create()
         {
-            Random rnd = new();
-            string player1Id = rnd.Next(0, 10000000).ToString();
+            string json = JsonConvert.SerializeObject(_gamesService.CreateNewGame(), Formatting.Indented);
 
-            Game game = new()
-            {
-                GameId = rnd.Next(0, 10000000).ToString(),
-                Player1Id = player1Id,
-                Player2Id = rnd.Next(0, 10000000).ToString(),
-                PlayerTurnId = player1Id
-            };
+            return json;
+        }
 
-            _myclass.Games.Add(game);
-
-            string json = JsonConvert.SerializeObject(game, Formatting.Indented);
+        // LIST: api/game/list
+        [HttpGet("list")]
+        public string List()
+        {
+            string json = JsonConvert.SerializeObject(_gamesService.Games, Formatting.Indented);
 
             return json;
         }

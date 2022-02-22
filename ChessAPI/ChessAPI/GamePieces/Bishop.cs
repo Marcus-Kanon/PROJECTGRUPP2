@@ -1,15 +1,15 @@
-using SharedCsharpModels.Models;
-
+﻿using SharedCsharpModels.Models;
 
 namespace ChessAPI.GamePieces
 {
-    public class King : GamePiece
+    public class Bishop : GamePiece
     {
-        public override string Name { get => "\u265A"; }
-        
-        public King(GameState game, Color color) : base(game, color)
+        public override string Name { get => "\u265D"; }
+
+        public Bishop(GameState game, Color color) : base(game, color)
         {
-            Type = PieceType.King;
+            Type = PieceType.Bishop;
+
         }
 
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
