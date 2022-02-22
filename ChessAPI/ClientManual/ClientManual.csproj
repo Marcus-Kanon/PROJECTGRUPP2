@@ -13,10 +13,6 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ChessAPI\ChessAPI.csproj" />
-  </ItemGroup>
-
   <Import Project="..\SharedCsharpModels\SharedCsharpModels.projitems" Label="Shared" />
 
 </Project>

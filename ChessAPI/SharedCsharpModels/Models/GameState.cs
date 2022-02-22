@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using ChessAPI.GamePieces;
 
 namespace SharedCsharpModels.Models
 {

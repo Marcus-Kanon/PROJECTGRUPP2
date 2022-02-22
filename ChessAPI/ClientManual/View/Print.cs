@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Text;
-using ChessAPI.GamePieces;
 using SharedCsharpModels.Models;
 
 namespace SharedCsharpModels.View
