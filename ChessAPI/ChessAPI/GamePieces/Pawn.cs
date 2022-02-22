@@ -5,12 +5,9 @@ namespace ChessAPI.GamePieces
 {
     public class Pawn : GamePiece
     {
-        public override string Name
-        {
-            get { if (Color == true) { return "\u2659"; } else { return "\u265F"; } }
-        }
+        public override string Name { get => "\u265F"; }
 
-        public Pawn(GameState game, bool color) : base(game, color)
+        public Pawn(GameState game, Color color) : base(game, color)
         {
             Type = PieceType.Pawn;
         }
@@ -21,7 +18,7 @@ namespace ChessAPI.GamePieces
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
+                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
                 return MoveValidationMessage.Succeeded;
             }
         }
@@ -40,9 +37,9 @@ namespace ChessAPI.GamePieces
                    //||
                    ////(second.Item2 == 4 && first.Item2 == 6 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2] is NoPiece && _game.Board[second.Item1, 5] is NoPiece && this.Color == false) // två steg tillåtet första drag svart
                    ||
-                   (second.Item2 - first.Item2 == 1 && Math.Abs(second.Item1 - first.Item1) == 1 &&  _game.Board[second.Item1, second.Item2].Name!=" " && _game.Board[second.Item1, second.Item2].Color==!this.Color )  // slag vit
+                   (second.Item2 - first.Item2 == 1 && Math.Abs(second.Item1 - first.Item1) == 1 &&  _game.Board[second.Item1, second.Item2].Name!=" " && _game.Board[second.Item1, second.Item2].Color != this.Color )  // slag vit
                    //||
-                   ////(second.Item2 - first.Item2 == -1 && Math.Abs(second.Item1 - first.Item1) == 1 && _game.Board[second.Item1, second.Item2] is not NoPiece && _game.Board[second.Item1, second.Item2].Color == !this.Color)  // slag svart
+                   ////(second.Item2 - first.Item2 == -1 && Math.Abs(second.Item1 - first.Item1) == 1 && _game.Board[second.Item1, second.Item2] is not NoPiece && _game.Board[second.Item1, second.Item2].Color != this.Color)  // slag svart
 
                    );
         }

@@ -4,12 +4,9 @@ namespace ChessAPI.GamePieces
 {
     public class Bishop : GamePiece
     {
-        public override string Name
-        {
-            get { if (Color == true) { return "\u2657"; } else { return "\u265D"; } }
-        }
+        public override string Name { get => "\u265D"; }
 
-        public Bishop(GameState game, bool color) : base(game, color)
+        public Bishop(GameState game, Color color) : base(game, color)
         {
             Type = PieceType.Bishop;
 
@@ -18,7 +15,7 @@ namespace ChessAPI.GamePieces
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game);
+            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
 
             return MoveValidationMessage.Succeeded;
         }

@@ -1,10 +1,9 @@
-using System.Runtime.InteropServices;
 /*
- * From: https://stackoverflow.com/questions/52356843/setcurrentconsolefontex-isnt-working-for-long-font-names
- * 
- * Needed to be able to correctly print chess symbols/unicode to console
- * 
+ * Code copied from: https://stackoverflow.com/questions/52356843/setcurrentconsolefontex-isnt-working-for-long-font-names
+ * To make it possible to correctly print chess symbols/unicode to console
  */
+using System.Runtime.InteropServices;
+
 namespace ClientManual
 {
     public static class ConsoleHelper
@@ -83,5 +82,4 @@ namespace ClientManual
             }
         }
     }
-
 }
