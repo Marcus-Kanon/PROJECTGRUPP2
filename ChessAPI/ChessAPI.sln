@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientManual", "ClientManua
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedCsharpModels", "SharedCsharpModels\SharedCsharpModels.shproj", "{7CDF6821-D79E-4285-A374-5A2EB1031F80}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChessAPI Tests", "ChessAPI Tests\ChessAPI Tests.csproj", "{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient Tests", "ConsoleClient Tests\ConsoleClient Tests.csproj", "{C06D6763-A028-419D-81AF-4A003F83F941}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		SharedCsharpModels\SharedCsharpModels.projitems*{18f533da-19bd-4760-afdd-a341cc250671}*SharedItemsImports = 5
@@ -28,6 +32,14 @@ Global
 		{18F533DA-19BD-4760-AFDD-A341CC250671}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18F533DA-19BD-4760-AFDD-A341CC250671}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18F533DA-19BD-4760-AFDD-A341CC250671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C06D6763-A028-419D-81AF-4A003F83F941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C06D6763-A028-419D-81AF-4A003F83F941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C06D6763-A028-419D-81AF-4A003F83F941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C06D6763-A028-419D-81AF-4A003F83F941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
