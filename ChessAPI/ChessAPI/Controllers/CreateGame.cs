@@ -24,7 +24,7 @@ namespace ChessAPI.Controllers
             return json;
         }
 
-        // LIST: api/game/list
+        // LIST: api/creategame/list
         [HttpGet("list")]
         public string List()
         {
