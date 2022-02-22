@@ -1,6 +1,6 @@
 ﻿namespace SharedCsharpModels.Models
 {
-    public partial class GamePiece : IGamePiece
+    public class GamePiece : IGamePiece
     {
         public virtual string Name { get; set; } = "";
         public virtual Color Color { get; set; }
