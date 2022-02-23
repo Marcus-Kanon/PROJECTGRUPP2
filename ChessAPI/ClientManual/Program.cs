@@ -98,11 +98,7 @@ while (true)
     Print.Header();
     Console.WriteLine($"GameId: {game.GameId}\n");
     counter++;
-    //Ansluter API med parametrar GameId/Player1Id
-    //if (counter % 2 == 0)
     results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1.Id);
-    //else
-    //    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player2.Id);
 
     //Deserialiserar svaret vi får
     game = JsonConvert.DeserializeObject<GameState>(results);
@@ -119,17 +115,14 @@ while (true)
 
     //Väljer parametrar för Move API:n -- TODO: gör en metod
     Console.WriteLine("Choose coordinates of piece to move: ");
-    Console.Write("current row (vertical): "); var oldX = Console.ReadLine();
-    Console.Write("current column (horizontal): "); var oldY = Console.ReadLine();
-    Console.Write("new row (vertical):: "); var newX = Console.ReadLine();
-    Console.Write("new column (horizontal): "); var newY = Console.ReadLine();
+    Console.Write("current row (vertical): "); var oldY = Console.ReadLine();
+    Console.Write("current column (horizontal): "); var oldX = Console.ReadLine();
+    Console.Write("new row (vertical): "); var newY = Console.ReadLine();
+    Console.Write("new column (horizontal): "); var newX = Console.ReadLine();
 
 
     //Ansluter Move API:n
-    //if (counter % 2 == 0)
     results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1.Id}/{oldX}/{oldY}/{newX}/{newY}");
-    //else
-    //     results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player2.Id}/{oldX}/{oldY}/{newX}/{newY}");
 
     //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
     string message = results;

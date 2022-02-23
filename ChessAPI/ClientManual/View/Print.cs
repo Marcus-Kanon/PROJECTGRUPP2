@@ -81,10 +81,10 @@ namespace SharedCsharpModels.View
 
                     if (row == 0 && column == BOARD_WIDTH - 1)
                     {
-                        Console.WriteLine($"|    Player 2(BLACK): {game.Player2.Id}");
+                        Console.WriteLine($"|    Player 1(WHITE): {game.Player1.Id}");
                     }
                     else if (row == BOARD_WIDTH - 1 && column == BOARD_WIDTH - 1)
-                        Console.Write($"|    Player 1(WHITE): {game.Player1.Id}");
+                        Console.Write($"|    Player 2(BLACK): {game.Player2.Id}");
                 }
                 if (row > 0)
                     Console.Write("|\n");
