@@ -19,7 +19,7 @@ namespace ChessAPI.GamePieces
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
+                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color.Empty);
 
                 return MoveValidationMessage.Succeeded;
             }
