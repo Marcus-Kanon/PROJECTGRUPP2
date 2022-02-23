@@ -2,21 +2,28 @@ using SharedCsharpModels.Models;
 
 namespace ChessAPI
 {
-    public class GameStateHelper : GameState
+    public class GameStateHelper
     {
-        //public void ChangePlayerTurn()
-        //{
-        //    if (Player1.IsPlayerTurn)
-        //    {
-        //        Player1.IsPlayerTurn = false;
-        //        Player2.IsPlayerTurn = true;
-        //    }
-        //    else
-        //    {
-        //        Player1.IsPlayerTurn = true;
-        //        Player2.IsPlayerTurn = false;
-        //    }
-        //}
+        GameState _gameState;
+
+        public GameStateHelper(GameState gameState)
+        {
+            _gameState = gameState;
+        }
+
+        public void ChangePlayerTurn()
+        {
+            if (_gameState.Player1.IsPlayerTurn)
+            {
+                _gameState.Player1.IsPlayerTurn = false;
+                _gameState.Player2.IsPlayerTurn = true;
+            }
+            else
+            {
+                _gameState.Player1.IsPlayerTurn = true;
+                _gameState.Player2.IsPlayerTurn = false;
+            }
+        }
 
         public static void Turn(Player player)
         {
