@@ -18,6 +18,11 @@ namespace ChessAPI.GamePieces
             _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
             _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
 
+
+            var gamestatehelper = new GameStateHelper(_game);
+            gamestatehelper.ChangePlayerTurn();
+
+
             return MoveValidationMessage.Succeeded;
         }
     }
