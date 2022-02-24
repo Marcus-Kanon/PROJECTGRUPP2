@@ -25,8 +25,8 @@ namespace ChessAPI
             string player2Id = rnd.Next(0, 10000000).ToString();
 
             game.GameId = rnd.Next(0, 10000000).ToString();
-            game.Player1 = new(player1Id, Color.Light);
-            game.Player2 = new(player2Id, Color.Dark);
+            game.Player1 = new() {Id = player1Id, Color = Color.Light, IsPlayerTurn = true };
+            game.Player2 = new() { Id = player2Id, Color = Color.Dark, IsPlayerTurn = false };
             game.Board = CreateBoard(BOARD_WIDTH, BOARD_HEIGHT, game);
 
             Games.Add(game);
