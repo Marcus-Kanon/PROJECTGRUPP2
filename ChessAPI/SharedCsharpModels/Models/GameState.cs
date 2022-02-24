@@ -13,6 +13,6 @@ namespace SharedCsharpModels.Models
         public Player Player1 { get; set; }
         public Player Player2 { get; set; }
 
-        public Player MovingPlayer => this.Player1?.IsPlayerTurn ?? false ? this.Player2 : this.Player1;
+        public Player MovingPlayer => Player1?.IsPlayerTurn == false ? Player2 : Player1;
     }
 }

@@ -32,6 +32,7 @@ Console.WriteLine("Do you want to start a (n)ew game or (j)oin an existing one?"
 var userChoice = Console.ReadKey();
 
 GameState game = null;
+string joinplayerID = "";
 
 if (userChoice.Key == ConsoleKey.N)
 {
@@ -43,27 +44,18 @@ if (userChoice.Key == ConsoleKey.N)
 
     //Här skapar vi ett objekt genom at deserialisera informationen våran API gav oss
     game = JsonConvert.DeserializeObject<GameState>(results);
+    joinplayerID = game.Player1.Id;
 }
 else if (userChoice.Key == ConsoleKey.J)
 {
-    results = new WebClient().DownloadString("https://localhost:7223/api/creategame/list");
-
-    var gameStates = JsonConvert.DeserializeObject<List<GameState>>(results);
-
     Console.Clear();
+    Console.Write("Enter game ID: ");
+    var joinGameID = Console.ReadLine();
+    Console.Write("Enter player ID: ");
+    joinplayerID = Console.ReadLine();
+    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + joinGameID + "/" + joinplayerID);
+    game = JsonConvert.DeserializeObject<GameState>(results);
 
-    var i = 0;
-
-    foreach (var match in gameStates)
-    {
-        Console.WriteLine($"Game Id: [{i}] {match.GameId}");
-        i++;
-    }
-
-    Console.Write("Select Game: ");
-
-    int.TryParse(Console.ReadLine(), out var gameIdChoice);
-    game = gameStates[gameIdChoice];
 }
 
 /*
@@ -98,16 +90,13 @@ while (true)
     Print.Header();
     Console.WriteLine($"GameId: {game.GameId}\n");
     counter++;
-    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + game.Player1.Id);
+    results = new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + game.GameId + "/" + joinplayerID);
 
     //Deserialiserar svaret vi får
     game = JsonConvert.DeserializeObject<GameState>(results);
 
     //show the empty chess board
-    if (counter % 2 != 0)
-        Print.Turn(game.Player1);
-    else
-        Print.Turn(game.Player2);
+    Console.WriteLine($"Player Turn: {game.MovingPlayer.Color} ({game.MovingPlayer.Id})");
 
     Print.ChessBoard(counter, game);
 
@@ -122,7 +111,7 @@ while (true)
 
 
     //Ansluter Move API:n
-    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{game.Player1.Id}/{oldX}/{oldY}/{newX}/{newY}");
+    results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{joinplayerID}/{oldX}/{oldY}/{newX}/{newY}");
 
     //Move API:n returnerar ett string objekt som det är nu så det behövs ingen deserialisering
     string message = results;
