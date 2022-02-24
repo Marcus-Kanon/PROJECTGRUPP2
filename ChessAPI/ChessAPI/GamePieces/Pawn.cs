@@ -5,8 +5,7 @@ namespace ChessAPI.GamePieces
 {
     public class Pawn : GamePiece
     {
-        //public override string Name { get => "\u265F"; }
-        public override string Name { get => "P"; }
+        public override string Name { get => "\u265F"; }
 
         public Pawn(GameState game, Color color) : base(game, color)
         {
