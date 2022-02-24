@@ -6,6 +6,7 @@
         InvalidMoveOutsideBoard,
         InvalidMoveBlocked,
         IllegalMove,
-        WillCheckOneself
+        WillCheckOneself,
+        WrongPlayerTurn
     }
 }
