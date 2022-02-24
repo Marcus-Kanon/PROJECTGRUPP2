@@ -23,7 +23,8 @@
 
         public virtual bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            throw new NotImplementedException();
+            return false;
+            //throw new NotImplementedException();
         }
     }
 }

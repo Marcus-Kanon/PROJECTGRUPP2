@@ -44,7 +44,8 @@ namespace ChessAPI.GamePieces
                     if (
                         game.Board[start, oldCoords.Item2].Name != " "
 
-                            && (game.Board[start, oldCoords.Item2].Color == game.Board[start, oldCoords.Item2].Color
+                                //&& (game.Board[start, oldCoords.Item2].Color == game.Board[start, oldCoords.Item2].Color
+                                && (game.Board[start, oldCoords.Item2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color
                                 ||
                                 start != newCooords.Item1
                                 )
@@ -133,6 +134,159 @@ namespace ChessAPI.GamePieces
 
             }
             return false;
+        }
+
+        public static bool IsGuarded((int, int) target, GameState game, Color enemyColor) //onödiggör Ovanstående
+        {
+            //if (game.Board[target.Item1, target.Item2].Color != enemyColor) return false;
+             if (game.Board[target.Item1, target.Item2].Color != enemyColor && game.Board[target.Item1, target.Item2].Color != Color.Empty) return false;
+
+            var tempPiece = game.Board[target.Item1, target.Item2].Type.ToString();// vad händer när target ändras? borde inte vára problem bools enums är value types?
+            //var targetColor = game.Board[target.Item1, target.Item2].Color.ToString();
+            var targetColor = game.Board[target.Item1, target.Item2].Color;
+            var myColor = (enemyColor == Color.Dark ) ? Color.Light : Color.Dark;
+
+            //var hasMoved = game.Board[target.Item1, target.Item2].HasMoved; 
+            bool truth = false;
+            game.Board[target.Item1, target.Item2] = new Pawn(game, myColor);
+            //bool returnMe = false;
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 8; j++)
+                {
+                    int plusMinus = enemyColor == Color.Dark ? -1 : 1;
+ 
+                    if (game.Board[i, j].Type != PieceType.King)                //skydd mot regression
+                    {
+                        //Console.WriteLine(game.Board[target.Item1, target.Item2].Type.ToString()+" "+ game.Board[target.Item1, target.Item2].Color.ToString());
+                         truth = (
+                                        game.Board[i, j].CheckLegalMove((i, j), (target.Item1, target.Item2))
+
+                                        && game.Board[i, j].Color == enemyColor
+
+                                     //&& game.Board[i, j].Type != PieceType.Pawn
+
+                                     );
+                         Console.WriteLine (i+" "+j+" "+truth+" myColor "+myColor.ToString()+" enemyC "+enemyColor.ToString());
+                        //bool dare =  (
+
+                        //                (game.Board[i, j].Type == PieceType.Pawn) 
+
+                        //                && (game.Board[i, j].Color == enemyColor) 
+
+                        //                && (target.Item2 - j == 1 * plusMinus) 
+
+                        //                && Math.Abs(target.Item1 - i) == 1
+
+                        //            )    
+                        ;
+
+
+                    }
+
+
+
+
+                    //if (truth  ) return (truth  );
+
+                    if (truth)
+                    {
+                        switch (tempPiece.ToString())
+                        {
+                            case "NoPiece":
+                                game.Board[target.Item1, target.Item2] = new NoPiece(game, Color.Empty);
+                                break;
+                            case "Pawn":
+                                Console.WriteLine("pawn");
+                                game.Board[target.Item1, target.Item2] = new Pawn(game, targetColor);
+
+                                break;
+                            case "Rook":
+                                game.Board[target.Item1, target.Item2] = new Rook(game, targetColor);
+                                break;
+                            case "Knight":
+                                game.Board[target.Item1, target.Item2] = new Knight(game, targetColor);
+                                break;
+                            case "Bishop":
+                                game.Board[target.Item1, target.Item2] = new Bishop(game, targetColor);
+                                break;
+                            case "Queen":
+                                game.Board[target.Item1, target.Item2] = new Queen(game, targetColor);
+                                break;
+                            case "King":
+                                //        ,,,           borde inte kunna hända
+                                //       (O O)       
+                                //---ooO--(_)--Ooo--- 
+                                //                    
+                                //     KILROY WAS    
+                                //       HERE
+
+
+                                break;
+                            default:
+                                Console.WriteLine("default");
+                                //        ,,,           inte detta heller - isf har ngt gått fel.
+                                //       (O O)       
+                                //---ooO--(_)--Ooo--- 
+                                //                    
+                                //     KILROY WAS    
+                                //       HERE
+
+
+                                break;
+                        }
+                        return truth;
+                    } ;
+
+                }
+
+            }
+            switch (tempPiece.ToString())
+            {
+                case "NoPiece":
+                    game.Board[target.Item1, target.Item2] = new NoPiece(game, Color.Empty);
+                    break;
+                case "Pawn":
+                    Console.WriteLine("pawn");
+                    game.Board[target.Item1, target.Item2] = new Pawn(game, targetColor);
+
+                    break;
+                case "Rook":
+                    game.Board[target.Item1, target.Item2] = new Rook(game, targetColor);
+                    break;
+                case "Knight":
+                    game.Board[target.Item1, target.Item2] = new Knight(game, targetColor);
+                    break;
+                case "Bishop":
+                    game.Board[target.Item1, target.Item2] = new Bishop(game, targetColor);
+                    break;
+                case "Queen":
+                    game.Board[target.Item1, target.Item2] = new Queen(game, targetColor);
+                    break;
+                case "King":
+                    //        ,,,           borde inte kunna hända
+                    //       (O O)       
+                    //---ooO--(_)--Ooo--- 
+                    //                    
+                    //     KILROY WAS    
+                    //       HERE
+
+
+                    break;
+                default:
+                    Console.WriteLine("default");
+                    //        ,,,           inte detta heller - isf har ngt gått fel.
+                    //       (O O)       
+                    //---ooO--(_)--Ooo--- 
+                    //                    
+                    //     KILROY WAS    
+                    //       HERE
+
+
+                    break;
+            }
+            return truth;
         }
 
     }

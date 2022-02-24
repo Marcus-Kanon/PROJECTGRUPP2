@@ -5,8 +5,8 @@ namespace ChessAPI.GamePieces
 {
     public class Pawn : GamePiece
     {
-        public override string Name { get => "\u265F"; }
-        //public override string Name { get => "P"; }
+        //public override string Name { get => "\u265F"; }
+        public override string Name { get => "P"; }
 
         public Pawn(GameState game, Color color) : base(game, color)
         {
@@ -41,7 +41,7 @@ namespace ChessAPI.GamePieces
                 (second.Item2 - first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Light) // vanligt drag vit  
                  ||
                  //(second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Dark) // vanligt drag svart
-                 (second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " ") // vanligt drag svart
+                 (second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " ") && this.Color == Color.Dark // vanligt drag svart
                  ||
                 (second.Item2 == 3 && first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && _game.Board[second.Item1, 2].Name == " " && this.Color == Color.Light) // två steg tillåtet första drag vit
                  ||                                                                                                                                                                                                //||
@@ -73,7 +73,7 @@ namespace ChessAPI.GamePieces
 
 
 
-                   ) ;
+                   );
         }
 
     }
