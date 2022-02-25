@@ -15,7 +15,7 @@ namespace ChessAPI.GamePieces
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords) // TODO && CheckIfMate(this.Color)
         {
             if (_game.MovingPlayer.Color != Color)
-                return MoveValidationMessage.WrongPlayerTurn;
+                return MoveValidationMessage.WrongColor;
 
             if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
             else

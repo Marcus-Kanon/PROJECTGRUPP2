@@ -13,13 +13,16 @@ namespace SharedCsharpModels.View
 
         public static void Header()
         {
-            string header = "             CONSOLE CHESS BY GROUP 2               \n";
+            string header = "                               CHESS BY GROUP 2\n";
             Console.WriteLine(header);
         }
+
         public static void Menu()
         {
-            Console.WriteLine("(N)EW GAME         (L)OAD Game         (E)XIT");
+            Header();
+            Console.WriteLine("               (N)EW GAME         (J)OIN Game         (E)XIT");
         }
+
         public static void ChessBoard(int counter, GameState game)
         {
             Console.WriteLine($"\n\n     0    1    2    3    4    5    6    7              Round: {counter}");
@@ -49,12 +52,10 @@ namespace SharedCsharpModels.View
                     else
                         Console.BackgroundColor = ConsoleColor.DarkGray;
 
-                    //var name = game.Board[row, column]?.Name ?? "null";
                     var name = game.Board[column, row]?.Name ?? "null";
 
                     Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-                    //if (game.Board[row, column].Color == Color.Dark)
                     if (game.Board[column, row].Color == Color.Dark)
                     {
                         Console.ForegroundColor = ConsoleColor.Black;
@@ -72,21 +73,12 @@ namespace SharedCsharpModels.View
                             Console.Write($" {name}  ");
                     }
 
-                    //if (game.Board[row, column].LegalNextMove)
-                    if (game.Board[column, row].LegalNextMove)
-                    {
-                        Console.Write("  XX  ");
-                    }
                     Console.ResetColor();
 
-                    if (row == 0 && column == BOARD_WIDTH - 1)
-                    {
-                        Console.WriteLine($"|    Player 1(WHITE): {game.Player1.Id}");
-                    }
-                    else if (row == BOARD_WIDTH - 1 && column == BOARD_WIDTH - 1)
-                        Console.Write($"|    Player 2(BLACK): {game.Player2.Id}");
+                    PlayerInfo(game, row, column);
+
                 }
-                if (row > 0)
+                if (row > 0 && row < BOARD_HEIGHT-1)
                     Console.Write("|\n");
             }
 
@@ -101,27 +93,16 @@ namespace SharedCsharpModels.View
             Console.WriteLine("============================================");
         }
 
-        public static void Stats(GameState game)
+        private static void PlayerInfo(GameState game, int row, int column)
         {
-            Console.WriteLine("GameId: " + game.GameId);
-            Console.WriteLine("Player1 Id: " + game.Player1.Id);
-            Console.WriteLine("Player2 Id: " + game.Player2.Id);
-            Console.WriteLine("Press Enter to Continue");
-            Console.ReadLine();
-        }
-
-        public static void Turn(Player player)
-        {
-            if (player.Color == Color.Light)
+            if (row == 0 && column == BOARD_WIDTH - 1)
             {
-                Console.Write($"Player {player.Id}'s (WHITE) turn: ");
+                Console.WriteLine($"|    Player 1(WHITE): {game.Player1.Id}");
             }
-            else
+            if (row == BOARD_WIDTH - 1 && column == BOARD_WIDTH - 1)
             {
-                Console.Write($"Player {player.Id}'s (BLACK) turn: ");
+                Console.WriteLine($"|    Player 2(BLACK): {game.Player2.Id}");
             }
         }
-
-
     }
 }

@@ -14,50 +14,74 @@ namespace ChessAPI.GamePieces.Tests
     [TestClass()]
     public class BishopTests
     {
-        
-        [TestMethod()]
-        public void MoveTest()
+        //Arrange
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        GamesService Service = new GamesService();
+        GameState Gs;
+
+        public BishopTests()
         {
+            Gs = Service.CreateNewGame();
 
-            //Arrange
-            var service = new GamesService();
+            EmptyBoard();
 
-            var actual = service.CreateNewGame();
+            Gs.Board[0, 0] = new Bishop(Gs, Color.Light);
 
-            actual.Board = new GamePiece[8, 8]
+            Gs.Board[4, 4] = new Pawn(Gs, Color.Dark);
+            Gs.Board[6, 6] = new Pawn(Gs, Color.Light);
+        }
+        public void EmptyBoard()
+        {
+            Gs.Board = new GamePiece[8, 8]
             {
-                { new Rook(actual, Color.Light),        new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark),   new Rook(actual, Color.Dark) },
-                { new Knight(actual, Color.Light),      new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark),     new Knight(actual, Color.Dark) },
-                { new NoPiece(actual, Color.Empty),     new Pawn(actual, Color.Light),     new Bishop(actual, Color.Light),  new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark), new Bishop(actual, Color.Dark) },
-                { new King(actual, Color.Light),        new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark), new Queen(actual, Color.Dark) },
-                { new Queen(actual, Color.Light),       new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark), new King(actual, Color.Dark) },
-                { new Bishop(actual, Color.Light),      new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark), new Bishop(actual, Color.Dark) },
-                { new Knight(actual, Color.Light),      new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark),    new Knight(actual, Color.Dark) },
-                { new Rook(actual, Color.Light),        new Pawn(actual, Color.Light),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty),     new NoPiece(actual, Color.Empty), new NoPiece(actual, Color.Empty), new Pawn(actual, Color.Dark),  new Rook(actual, Color.Dark) },
+                { new NoPiece(Gs, Color.Empty),       new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),   new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),      new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),    new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty),  new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),    new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),        new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),  new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),       new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),   new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),      new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),    new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),      new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),    new NoPiece(Gs, Color.Empty) },
+                { new NoPiece(Gs, Color.Empty),        new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),     new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty), new NoPiece(Gs, Color.Empty),  new NoPiece(Gs, Color.Empty) },
             };
+        }
+
+        [TestMethod()]
+        [DataRow(0, 0, MoveValidationMessage.IllegalMove)] //Invalid. Cannot move to same spot
+        [DataRow(-1, -1, MoveValidationMessage.IllegalMove)] //Invalid. Outside board.
+        [DataRow(1, 1, MoveValidationMessage.Succeeded)] //Succeeded
+        [DataRow(1, 3, MoveValidationMessage.IllegalMove)] //Invalid. Bishop can only move diagonally.
+        [DataRow(3, 3, MoveValidationMessage.Succeeded)] //Succeeded
+        [DataRow(5, 5, MoveValidationMessage.IllegalMove)] //Invalid Blocked. Pawn is blocking the way.
+        [DataRow(4, 4, MoveValidationMessage.Succeeded)] //Succeed. Pawn taken.
+        [DataRow(6, 6, MoveValidationMessage.IllegalMove)] //Invalid. Spot taken by one of your pieces.
+        [DataRow(7, 7, MoveValidationMessage.IllegalMove)] //Invalid. Cannot move passed your own piece.
+
+        public void MoveTest(int moveX, int moveY, MoveValidationMessage expected)
+        {
+            //Arrange
 
 
             //Act
-            actual.Board[2, 2].Move((2, 2), (1, 3));
+            var actual = Gs.Board[X, Y].Move((X, Y), (moveX, moveY));
+            Assert.AreEqual(expected, actual);
 
-            var expected = service.CreateNewGame();
+            if (actual == MoveValidationMessage.Succeeded)
+                X = moveX; Y = moveY;
 
-            expected.Board = new GamePiece[8, 8]
-            {
-                { new Rook(expected, Color.Light),      new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Rook(expected, Color.Dark) },
-                { new Knight(expected, Color.Light),    new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new Bishop(expected, Color.Light),      new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Knight(expected, Color.Dark) },
-                { new NoPiece(expected, Color.Empty),   new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Bishop(expected, Color.Dark) },
-                { new King(expected, Color.Light),      new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Queen(expected, Color.Dark) },
-                { new Queen(expected, Color.Light),     new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new King(expected, Color.Dark) },
-                { new Bishop(expected, Color.Light),    new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Bishop(expected, Color.Dark) },
-                { new Knight(expected, Color.Light),    new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Knight(expected, Color.Dark) },
-                { new Rook(expected, Color.Light),      new Pawn(expected, Color.Light),    new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty),     new NoPiece(expected, Color.Empty), new NoPiece(expected, Color.Empty), new Pawn(expected, Color.Dark), new Rook(expected, Color.Dark) },
-            };
-
-            var expectedJson = JsonConvert.SerializeObject(expected.Board, Formatting.Indented);
-            var actualJson = JsonConvert.SerializeObject(actual.Board, Formatting.Indented);
-
-            Assert.IsTrue(expectedJson==actualJson);
+            /*
+            //From 0,0 to 7,7
+            Assert.AreEqual(    MoveValidationMessage.IllegalMove,      Gs.Board[0, 0].Move((0, 0), (0, 0)) ); //Invalid. Cannot move to same spot
+            Assert.AreEqual(    MoveValidationMessage.IllegalMove,      Gs.Board[0, 0].Move((0, 0), (-1, -1))); //Invalid. Outside board.
+            Assert.AreEqual(    MoveValidationMessage.Succeeded,        Gs.Board[0, 0].Move((0, 0), (1, 1)) ); //Succeeded
+            Assert.AreEqual(    MoveValidationMessage.Succeeded,        Gs.Board[1, 1].Move((1, 1), (3, 3)) ); //Succeeded
+            Assert.AreEqual(    MoveValidationMessage.IllegalMove,      Gs.Board[3, 3].Move((3, 3), (5, 5)) ); //Invalid Blocked
+            Assert.AreEqual(    MoveValidationMessage.Succeeded,        Gs.Board[3, 3].Move((3, 3), (4, 4)) ); //Succeed. Pawn taken.
+            Assert.AreEqual(    MoveValidationMessage.IllegalMove,      Gs.Board[4, 4].Move((4, 4), (6, 6)) ); //Invalid. Spot taken by one of your pieces.
+            Assert.AreEqual(    MoveValidationMessage.IllegalMove,      Gs.Board[4, 4].Move((4, 4), (7, 7)) ); //Invalid. Cannot move passed your own piece.
+            Assert.AreEqual(    MoveValidationMessage.Succeeded,        Gs.Board[4, 4].Move((4, 4), (5, 5)) ); //Succeeded.
+            */
 
         }
     }

@@ -24,17 +24,5 @@ namespace ChessAPI
                 _gameState.Player2.IsPlayerTurn = false;
             }
         }
-
-        public static void Turn(Player player)
-        {
-            if (player.Color == Color.Light)
-            {
-                Console.Write($"Player {player.Id}'s (WHITE) turn: ");
-            }
-            else
-            {
-                Console.Write($"Player {player.Id}'s (BLACK) turn: ");
-            }
-        }
     }
 }
