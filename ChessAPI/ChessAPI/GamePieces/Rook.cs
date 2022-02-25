@@ -12,6 +12,12 @@ namespace ChessAPI.GamePieces
             Type = PieceType.Rook;
         }
 
+        /// <summary>
+        /// Returns a specific move validation message, depending on if the rook being moved to a new spot is the other player's chess piece, or if the move is valid.
+        /// /// </summary>
+        /// <param name="oldCords">The current coordinates..</param>
+        /// <param name="newCords">The new coordinates..</param>
+        /// <returns></returns>
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             if (_game.MovingPlayer.Color != Color)
@@ -31,7 +37,12 @@ namespace ChessAPI.GamePieces
                 return MoveValidationMessage.Succeeded;
             }
         }
-
+        /// <summary>
+        /// Compares the rook's current coordinates and the new coordinates to check if the move is valid for the rook.
+        /// </summary>
+        /// <param name="first">The current coordinates.</param>
+        /// <param name="second">The new coordinates.</param>
+        /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             //return true;

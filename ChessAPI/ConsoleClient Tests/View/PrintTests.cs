@@ -12,12 +12,10 @@ namespace SharedCsharpModels.View.Tests
     [TestClass()]
     public class PrintTests
     {
-
         [TestMethod()]
         public void ChessBoardTest()
         {
             Assert.Fail();
         }
-
     }
 }

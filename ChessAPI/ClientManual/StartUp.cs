@@ -7,7 +7,6 @@ namespace ClientManual
 {
     public static class StartUp
     {
-
         /// <summary>
         /// Runs the game.
         /// </summary>
@@ -27,7 +26,7 @@ namespace ClientManual
                 Print.Header();
                 Console.WriteLine($"GameId: {game.GameId}\n");
                 results = GetBoard(playerID, game.GameId);
-                
+
                 game = Deserializer(results);
 
                 PlayerTurn(game, playerID);
@@ -42,7 +41,6 @@ namespace ClientManual
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
             }
-
         }
 
         /// <summary>
@@ -96,7 +94,6 @@ namespace ClientManual
             {
                 CreateANewGame(out game, out playerID, out results);
             }
-
             else if (userChoice.Key == ConsoleKey.J)
             {
                 JoinGame(out game, out playerID, out results);
@@ -234,7 +231,6 @@ namespace ClientManual
                     Console.Clear();
                     Console.Write("Must be a number, try again: ");
                 }
-                    
             }
             return input;
         }

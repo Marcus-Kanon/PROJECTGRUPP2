@@ -8,7 +8,7 @@ namespace ChessAPI.Controllers
     [ApiController, Route("api/[controller]")]
     public class CreateGame : ControllerBase
     {
-        IGamesService _gamesService;
+        readonly IGamesService _gamesService;
 
         public CreateGame(IGamesService gameService)
         {
@@ -20,15 +20,6 @@ namespace ChessAPI.Controllers
         public string Create()
         {
             string json = JsonConvert.SerializeObject(_gamesService.CreateNewGame(), Formatting.Indented);
-
-            return json;
-        }
-
-        // LIST: api/creategame/list
-        [HttpGet("list")]
-        public string List()
-        {
-            string json = JsonConvert.SerializeObject(_gamesService.Games, Formatting.Indented);
 
             return json;
         }

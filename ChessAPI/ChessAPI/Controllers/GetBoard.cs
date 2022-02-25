@@ -6,11 +6,10 @@ using SharedCsharpModels.Models;
 
 namespace ChessAPI.Controllers
 {
-    
     [ApiController]
     public class GetBoard : ControllerBase
     {
-        IGamesService _gamesService;
+        readonly IGamesService _gamesService;
 
         public GetBoard(IGamesService gamesService)
         {
