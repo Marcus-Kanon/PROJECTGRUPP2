@@ -11,21 +11,31 @@ namespace SharedCsharpModels.View
         const int BOARD_WIDTH = 8;
         const int BOARD_HEIGHT = 8;
 
+        /// <summary>
+        /// Prints out a header
+        /// </summary>
         public static void Header()
         {
             string header = "                               CHESS BY GROUP 2\n";
             Console.WriteLine(header);
         }
 
+        /// <summary>
+        /// Prints out a menu
+        /// </summary>
         public static void Menu()
         {
             Header();
             Console.WriteLine("               (N)EW GAME         (J)OIN Game         (E)XIT");
         }
 
-        public static void ChessBoard(int counter, GameState game)
+        /// <summary>
+        /// Prints out the chessboard according to gamestate.
+        /// </summary>
+        /// <param name="game">Gamestate.</param>
+        public static void ChessBoard(GameState game)
         {
-            Console.WriteLine($"\n\n     0    1    2    3    4    5    6    7              Round: {counter}");
+            Console.WriteLine($"\n\n     0    1    2    3    4    5    6    7              ");
 
             for (int row = 0; row < BOARD_HEIGHT; row++)
             {
@@ -93,6 +103,12 @@ namespace SharedCsharpModels.View
             Console.WriteLine("============================================");
         }
 
+        /// <summary>
+        /// Prints out player info.
+        /// </summary>
+        /// <param name="game">Gamestate.</param>
+        /// <param name="row">The row.</param>
+        /// <param name="column">The column.</param>
         private static void PlayerInfo(GameState game, int row, int column)
         {
             if (row == 0 && column == BOARD_WIDTH - 1)

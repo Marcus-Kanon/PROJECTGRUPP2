@@ -1,4 +1,4 @@
-/*
+/* "SetCurrentConsoleFontEx isn't working for long font names"
  * Code copied from: https://stackoverflow.com/questions/52356843/setcurrentconsolefontex-isnt-working-for-long-font-names
  * To make it possible to correctly print chess symbols/unicode to console
  */
