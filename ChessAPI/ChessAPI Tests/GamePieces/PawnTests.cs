@@ -20,7 +20,6 @@ namespace ChessAPI.GamePieces.Tests
         public void TestInitialize()
         {
             newGame = gamesService.CreateNewGame();
-            
             customGame = gamesService.CreateNewGame();
             customGame.Board = new GamePiece[8, 8]
             {
@@ -40,8 +39,7 @@ namespace ChessAPI.GamePieces.Tests
         {
             var move = newGame?.Board?[0, 6].Move((0, 6), (0, 4));
             var actual = move;
-            var expected = MoveValidationMessage.WrongPieceColor;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(MoveValidationMessage.WrongPieceColor, actual);
         }
 
         [TestMethod()]
@@ -51,17 +49,16 @@ namespace ChessAPI.GamePieces.Tests
             newGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
             var move = newGame?.Board?[0, 1].Move((0, 1), (0, 3));
             var actual = move;
-            var expected = MoveValidationMessage.WrongPieceColor;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(MoveValidationMessage.WrongPieceColor, actual);
         }
 
         [TestMethod()]
-        [DataRow(0, 1, 0, 2, MoveValidationMessage.Succeeded)]
-        [DataRow(0, 1, 0, 3, MoveValidationMessage.Succeeded)]
-        public void MoveTest_LightPawnMovesOneSquareOrTwoSquaresForwardOnFirstMove_ReturnsSucceedede(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
+        [DataRow(0, 1, 0, 2)]
+        [DataRow(0, 1, 0, 3)]
+        public void MoveTest_LightPawnMovesOneSquareOrTwoSquaresForwardOnFirstMove_ReturnsSucceedede(int oldCol, int oldRow, int newCol, int newRow)
         {
             var actual = newGame?.Board?[0,1].Move((oldCol, oldRow), (newCol, newRow));
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
         }
 
         [TestMethod()]
@@ -106,8 +103,7 @@ namespace ChessAPI.GamePieces.Tests
         {
             var move = customGame?.Board?[4, 3].Move((4, 3), (3, 4));
             var actual = move;
-            var expected = MoveValidationMessage.Succeeded;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
         }
 
         [TestMethod()]
@@ -117,8 +113,7 @@ namespace ChessAPI.GamePieces.Tests
             customGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
             var move = customGame?.Board?[3, 4].Move((3, 4), (4, 3));
             var actual = move;
-            var expected = MoveValidationMessage.Succeeded;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
         }
     }
 }

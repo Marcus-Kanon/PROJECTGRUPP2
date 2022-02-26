@@ -56,7 +56,7 @@ namespace ChessAPI
                 }
             }
 
-            Board = new GamePiece[BOARD_WIDTH, BOARD_HEIGHT]
+            return new GamePiece[BOARD_WIDTH, BOARD_HEIGHT]
             {
                 { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Rook(game, Color.Dark) },
                 { new Knight(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Knight(game, Color.Dark) },
@@ -67,8 +67,6 @@ namespace ChessAPI
                 { new Knight(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Knight(game, Color.Dark) },
                 { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Rook(game, Color.Dark) },
             };
-
-            return Board;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace ChessAPI.Controllers
         [HttpGet]
         public string Get(string gameId, string playerId, int newX, int newY, int oldX, int oldY)
         {
-            GameState game = _gamesService.Games.FirstOrDefault(q => q.GameId == gameId);
+            GameState game = _gamesService.Games.Find(q => q.GameId == gameId);
 
             if (game == null)
                 return "No game found";

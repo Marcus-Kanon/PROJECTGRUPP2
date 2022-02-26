@@ -14,7 +14,7 @@ namespace ChessAPI.GamePieces
             int start = oldCoords.Item2;
             do
             {
-                start = start + 1 * plusMinus;
+                start = start + (1 * plusMinus);
                 if (
                     game.Board[oldCoords.Item1, start].Name != " "
 
@@ -37,7 +37,7 @@ namespace ChessAPI.GamePieces
             do
             {
 
-                start = start + 1 * plusMinus;
+                start = start + (1 * plusMinus);
 
 
                 //if (game.Board[start, oldCoords.Item2].Name != " " && game.Board[start,oldCoords.Item2 ].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
@@ -68,7 +68,7 @@ namespace ChessAPI.GamePieces
             {
  
                 start = start - 1;
-                start2 = start2 + 1 * plusMinus;
+                start2 = start2 + (1 * plusMinus);
  
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start==newCooords.Item1 && start2 != newCooords.Item2 ) ) return false;
                 //if ((game.Board[start, start2].Name != " " && start != newCooords.Item1) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
@@ -77,7 +77,7 @@ namespace ChessAPI.GamePieces
                     
                     &&      ( game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color
                               ||
-                             ( start != newCooords.Item1 || start2 != newCooords.Item2)
+                              start != newCooords.Item1 || start2 != newCooords.Item2
                             )
                     )
                 {
@@ -98,7 +98,7 @@ namespace ChessAPI.GamePieces
             do
             {
                 start = start + 1;
-                start2 = start2 + 1 * plusMinus;
+                start2 = start2 + (1 * plusMinus);
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
                 //if ((game.Board[start, start2].Name != " " ) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
@@ -106,7 +106,7 @@ namespace ChessAPI.GamePieces
 
                     && (game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color
                               ||
-                             (start != newCooords.Item1 || start2 != newCooords.Item2)
+                             start != newCooords.Item1 || start2 != newCooords.Item2
                             )
                     )
 
@@ -160,14 +160,14 @@ namespace ChessAPI.GamePieces
                     if (game.Board[i, j].Type != PieceType.King)                //skydd mot regression
                     {
                         //Console.WriteLine(game.Board[target.Item1, target.Item2].Type.ToString()+" "+ game.Board[target.Item1, target.Item2].Color.ToString());
-                         truth = (
+                         truth = 
                                         game.Board[i, j].CheckLegalMove((i, j), (target.Item1, target.Item2))
 
                                         && game.Board[i, j].Color == enemyColor
 
                                      //&& game.Board[i, j].Type != PieceType.Pawn
 
-                                     );
+                                     ;
                          Console.WriteLine (i+" "+j+" "+truth+" myColor "+myColor.ToString()+" enemyC "+enemyColor.ToString());
                         //bool dare =  (
 
