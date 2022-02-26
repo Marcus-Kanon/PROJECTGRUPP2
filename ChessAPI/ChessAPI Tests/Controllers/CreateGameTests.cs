@@ -24,14 +24,9 @@ namespace ChessAPI.Controllers.Tests
         [TestMethod()]
         public void CreateTest_CreatingANewGame_ReturnsWhitePlayerAsPlayingTurn()
         {
-
-            //Act
             var actual = gameState?.MovingPlayer?.Color;
 
-            var expected = gameState?.Player1.Color;
-
-            //Assert
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(gameState?.Player1.Color, actual);
         }
     }
 }

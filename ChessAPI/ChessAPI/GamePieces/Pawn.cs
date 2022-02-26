@@ -23,7 +23,7 @@ namespace ChessAPI.GamePieces
             if (_game.MovingPlayer.Color != Color)
                 return MoveValidationMessage.WrongPieceColor;
 
-            if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
+            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
@@ -49,13 +49,13 @@ namespace ChessAPI.GamePieces
             //return true;
 
 
-            return (
+            return 
                 //first.Item1 < 8 && first.Item1 >=0 && first.Item1 < 8 && first.Item1 >= 0 ORKAR INTE MED DETTA, Gör koordinaterna till objekt, sätt 0<=x,y<=7 i accessorerna
                 //  && this.Color == true) funkar inte
                 (second.Item2 - first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Light) // vanligt drag vit  
                  ||
                  //(second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Dark) // vanligt drag svart
-                 (second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " ") && this.Color == Color.Dark // vanligt drag svart
+                 (second.Item2 - first.Item2 == -1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && this.Color == Color.Dark) // vanligt drag svart
                  ||
                 (second.Item2 == 3 && first.Item2 == 1 && second.Item1 == first.Item1 && _game.Board[second.Item1, second.Item2].Name == " " && _game.Board[second.Item1, 2].Name == " " && this.Color == Color.Light) // två steg tillåtet första drag vit
                  ||                                                                                                                                                                                                //||
@@ -81,14 +81,7 @@ namespace ChessAPI.GamePieces
                    //(second.Item1 - first.Item1 == -1 && Math.Abs(second.Item2 - first.Item2) == 1 && _game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == Color.Light)  // slag svart
 
                    ////////////////
-
-
-
-
-
-
-                   );
+                   ;
         }
-
     }
 }

@@ -18,8 +18,8 @@ namespace ChessAPI.GamePieces.Tests
         public int X { get; set; }
         public int Y { get; set; }
 
-        GamesService Service = new GamesService();
-        GameState Gs;
+        readonly GamesService Service = new();
+        readonly GameState Gs;
 
         public BishopTests()
         {

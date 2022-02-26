@@ -29,7 +29,6 @@
         public virtual MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             throw new NotImplementedException();
-
         }
         /// <summary>
         /// Compares the chess piece's current coordinates and the new coordinates to check if the move is valid for the chess piece.
