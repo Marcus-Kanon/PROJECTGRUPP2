@@ -36,7 +36,7 @@ namespace ClientManual
                 int newY = 0;
                 int oldX = 0;
                 int newX = 0;
-                RefreshOrMove(game, playerID, ref results, ref oldY, ref newY, ref oldX, ref newX);
+                RefreshMoveOrExit(game, playerID, ref results, ref oldY, ref newY, ref oldX, ref newX);
 
                 Console.WriteLine("\nPress enter to continue...");
                 Console.ReadLine();
@@ -44,7 +44,7 @@ namespace ClientManual
         }
 
         /// <summary>
-        /// Prompts user to refresh the board or make a move.
+        /// Prompts user to refresh the board or make a move, or exit the game.
         /// </summary>
         /// <param name="game">The current gamestate.</param>
         /// <param name="playerID">The user's player ID.</param>
@@ -53,23 +53,38 @@ namespace ClientManual
         /// <param name="newY">The new y coordinate.</param>
         /// <param name="oldX">The current x coordinate.</param>
         /// <param name="newX">The new x coordinate.</param>
-        private static void RefreshOrMove(GameState game, string playerID, ref string results, ref int oldY, ref int newY, ref int oldX, ref int newX)
+        private static void RefreshMoveOrExit(GameState game, string playerID, ref string results, ref int oldY, ref int newY, ref int oldX, ref int newX)
         {
-            Console.WriteLine("Do you want to (R)efresh or to make a (M)ove");
+            Console.WriteLine("Do you want to (R)efresh or to make a (M)ove      [Press ESC to exit game]");
 
             var input = Console.ReadKey();
 
-            while (input.Key != ConsoleKey.R && input.Key != ConsoleKey.M)
+            while (input.Key != ConsoleKey.R && input.Key != ConsoleKey.M && input.Key != ConsoleKey.Escape)
                 input = Console.ReadKey();
 
             if (input.Key == ConsoleKey.M)
             {
                 results = AskCoordinates(game, playerID, ref oldY, ref newY, ref oldX, ref newX);
             }
+            else if (input.Key == ConsoleKey.Escape)
+            {
+                DisplayExitMessage();
+            }
         }
 
         /// <summary>
-        /// Display player's turn.
+        /// Displays an exit message to the user.
+        /// </summary>
+        private static void DisplayExitMessage()
+        {
+            Console.WriteLine("Thanks for playing!");
+            Console.WriteLine("Press enter to exit game.");
+            Console.ReadLine();
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        /// Displays player's turn.
         /// </summary>
         /// <param name="game">The current gamestate.</param>
         /// <param name="playerID">The user's player ID.</param>
@@ -80,7 +95,7 @@ namespace ClientManual
         }
 
         /// <summary>
-        /// Display user's the menu.
+        /// Displays the menu prompting the user to create a new game or join an existing game.
         /// </summary>
         /// <param name="game">The current gamestate.</param>
         /// <param name="playerID">The user's player ID.</param>
@@ -89,6 +104,8 @@ namespace ClientManual
         {
             Print.Menu();
             var userChoice = Console.ReadKey();
+            while (userChoice.Key != ConsoleKey.N && userChoice.Key != ConsoleKey.J && userChoice.Key != ConsoleKey.Escape)
+                userChoice = Console.ReadKey();
 
             if (userChoice.Key == ConsoleKey.N)
             {
@@ -97,6 +114,10 @@ namespace ClientManual
             else if (userChoice.Key == ConsoleKey.J)
             {
                 JoinGame(out game, out playerID, out results);
+            }
+            else if (userChoice.Key == ConsoleKey.E)
+            {
+                DisplayExitMessage();
             }
         }
 

@@ -68,16 +68,6 @@ namespace ChessAPI
                 { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Rook(game, Color.Dark) },
             };
 
-            //    { new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
-            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
-            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
-            //    { new Queen(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new King(game, false) },
-            //    { new King(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Queen(game, false) },
-            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
-            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
-            //    { new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
-            //}
-
             return Board;
         }
     }
