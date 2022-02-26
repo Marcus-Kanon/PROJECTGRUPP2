@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ChessAPI.Controllers.GetBord;
+using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SharedCsharpModels.Models;
 
@@ -9,11 +10,11 @@ namespace ChessAPI.Controllers
     [ApiController]
     public class GetBoard : ControllerBase
     {
-        readonly IGamesService _gamesService;
+        private GetGameState _getGameState;
 
-        public GetBoard(IGamesService gamesService)
+        public GetBoard(GetGameState getGameState)
         {
-            _gamesService = gamesService;
+            _getGameState = getGameState;
         }
 
         // GET: api/<GetBoard>
@@ -21,9 +22,7 @@ namespace ChessAPI.Controllers
         [HttpGet]
         public string Get(string gameId, string playerId)
         {
-            GameState game = _gamesService.Games
-                .Find(q => q.GameId == gameId && (q.Player1.Id == playerId || q.Player2.Id == playerId));
-
+            GameState game = _getGameState.GetGame(gameId, playerId);
             var json = JsonConvert.SerializeObject(game);
 
             return json;
