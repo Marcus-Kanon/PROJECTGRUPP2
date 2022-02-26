@@ -9,13 +9,12 @@ namespace ChessAPI.Controllers
     [ApiController]
     public class Move : ControllerBase
     {
-        IGamesService _gamesService;
+        readonly IGamesService _gamesService;
 
         public Move(IGamesService gamesService)
         {
             _gamesService = gamesService;
         }
-
 
         // GET: api/<Move>
         [Route("api/[controller]/{gameId}/{playerId}/{oldX}/{oldY}/{newX}/{newY}")]

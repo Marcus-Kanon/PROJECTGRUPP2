@@ -16,6 +16,10 @@ namespace ChessAPI
             Games = new List<GameState>();
         }
 
+        /// <summary>
+        /// Creates a new game by preloading a chessboard with chesspieces and randomly generating six digit numbers for game ID and players ID.
+        /// </summary>
+        /// <returns></returns>
         public GameState CreateNewGame()
         {
             Random rnd = new();
@@ -33,13 +37,17 @@ namespace ChessAPI
 
             return game;
         }
-
+        /// <summary>
+        /// Creates a new 2D array of type GamePiece, and fills the array with new GamePieces, where each piece has its own unique x and y coordinates.
+        /// </summary>
+        /// <param name="boardWidth">Chessboard width.</param>
+        /// <param name="boardHeight">Chessboard height.</param>
+        /// <param name="game">The current gamestate.</param>
+        /// <returns></returns>
         public GamePiece[,] CreateBoard(int boardWidth, int boardHeight, GameState game)
         {
-            // skapar ny 2D array av typen GamePiece
             GamePiece[,] Board = new GamePiece[boardWidth, boardHeight];
 
-            // fyller 2D arrayen med nya GamePieces, där varje har sin "unika" x och y koordinat
             for (int x = 0; x < boardWidth; x++)
             {
                 for (int y = 0; y < boardHeight; y++)
@@ -59,16 +67,6 @@ namespace ChessAPI
                 { new Knight(game, Color.Light), new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Knight(game, Color.Dark) },
                 { new Rook(game, Color.Light),   new Pawn(game, Color.Light),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty),     new NoPiece(game, Color.Empty), new NoPiece(game, Color.Empty), new Pawn(game, Color.Dark), new Rook(game, Color.Dark) },
             };
-
-            //    { new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
-            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
-            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
-            //    { new Queen(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new King(game, false) },
-            //    { new King(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Queen(game, false) },
-            //    { new Bishop(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Bishop(game, false) },
-            //    { new Knight(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Knight(game, false) },
-            //    { new Rook(game, Color.Dark), new Pawn(game, Color.Dark), new NoPiece(game), new NoPiece(game), new NoPiece(game), new NoPiece(game), new Pawn(game, false), new Rook(game, false) },
-            //}
 
             return Board;
         }

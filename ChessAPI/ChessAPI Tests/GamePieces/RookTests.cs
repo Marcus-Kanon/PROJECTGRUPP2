@@ -1,19 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SharedCsharpModels.Models;
-using SharedCsharpModels.View;
+using ChessAPI.GamePieces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SharedCsharpModels.View.Tests
+namespace ChessAPI.GamePieces.Tests
 {
     [TestClass()]
-    public class PrintTests
+    public class RookTests
     {
         [TestMethod()]
-        public void ChessBoardTest()
+        public void MoveTest()
         {
             Assert.Fail();
         }

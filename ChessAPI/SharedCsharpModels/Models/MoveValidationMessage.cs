@@ -7,6 +7,6 @@
         InvalidMoveBlocked,
         IllegalMove,
         WillCheckOneself,
-        WrongColor
+        WrongPieceColor
     }
 }

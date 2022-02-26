@@ -12,10 +12,16 @@ namespace ChessAPI.GamePieces
             Type = PieceType.Pawn;
         }
 
+        /// <summary>
+        /// Returns a specific move validation message, depending on if the pawn being moved to a new spot is the other player's chess piece, or if the move is valid.
+        /// /// </summary>
+        /// <param name="oldCords">The current coordinates..</param>
+        /// <param name="newCords">The new coordinates..</param>
+        /// <returns></returns>
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
             if (_game.MovingPlayer.Color != Color)
-                return MoveValidationMessage.WrongColor;
+                return MoveValidationMessage.WrongPieceColor;
 
             if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
             else
@@ -32,6 +38,12 @@ namespace ChessAPI.GamePieces
             }
         }
 
+        /// <summary>
+        /// Compares the pawn's current coordinates and the new coordinates to check if the move is valid for the pawn.
+        /// </summary>
+        /// <param name="first">The current coordinates.</param>
+        /// <param name="second">The new coordinates.</param>
+        /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             //return true;

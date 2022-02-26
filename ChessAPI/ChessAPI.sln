@@ -11,8 +11,6 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SharedCsharpModels", "Share
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChessAPI Tests", "ChessAPI Tests\ChessAPI Tests.csproj", "{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleClient Tests", "ConsoleClient Tests\ConsoleClient Tests.csproj", "{C06D6763-A028-419D-81AF-4A003F83F941}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{165F3C1E-A69B-454E-8D99-D6BDADF7D089}"
 	ProjectSection(SolutionItems) = preProject
 		ClientManuals.txt = ClientManuals.txt
@@ -41,10 +39,6 @@ Global
 		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC0BDCA0-5C59-4FED-8E44-0EDD97055466}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C06D6763-A028-419D-81AF-4A003F83F941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C06D6763-A028-419D-81AF-4A003F83F941}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C06D6763-A028-419D-81AF-4A003F83F941}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C06D6763-A028-419D-81AF-4A003F83F941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
