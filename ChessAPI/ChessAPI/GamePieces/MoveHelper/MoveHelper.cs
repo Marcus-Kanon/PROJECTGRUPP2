@@ -288,6 +288,38 @@ namespace ChessAPI.GamePieces
             }
             return truth;
         }
+        /// <summary>
+        /// Finds the position of the king of the specified color
+        /// </summary>
+        /// <param name="color">the specified color</param>
+        /// <returns>tuple int int repressenting the position</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static (int, int) FindKing(Color color)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// checks whether the king of the specified color is checked
+        /// </summary>
+        /// <param name="color"> the specified color</param>
+        /// <returns>true if checked</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static bool CheckCheck(Color color)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// checks whether the king of the specified color is checkmated
+        /// </summary>
+        /// <param name="color">the specified color</param>
+        /// <returns>true if check mate</returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public static bool MateCheck(Color color)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
     }
 }
