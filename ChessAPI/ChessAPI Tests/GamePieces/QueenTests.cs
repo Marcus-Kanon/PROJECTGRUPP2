@@ -69,7 +69,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(6, 6, 5, 5)]
         [DataRow(6, 6, 6, 5)]
         [DataRow(6, 6, 7, 5)]
-        [DataRow(6, 6, 7, 5)]
+        [DataRow(6, 6, 7, 6)]
         [DataRow(6, 6, 7, 7)]
         [DataRow(6, 6, 6, 7)]
         [DataRow(6, 6, 5, 7)]

@@ -23,7 +23,7 @@ namespace ChessAPI.GamePieces
             if (_game.MovingPlayer.Color != Color)
                 return MoveValidationMessage.WrongPieceColor;
 
-            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
+            if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
@@ -46,8 +46,9 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
+            if (!(MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 }))) return false;
             //return true;
-            return Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1 && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color);
+            return (Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1 && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color));
         }
 
 

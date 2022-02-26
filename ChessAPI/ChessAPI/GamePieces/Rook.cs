@@ -1,5 +1,6 @@
 ﻿using SharedCsharpModels.Models;
 
+
 namespace ChessAPI.GamePieces
 {
     public class Rook : GamePiece
@@ -10,6 +11,7 @@ namespace ChessAPI.GamePieces
         {
             Type = PieceType.Rook;
         }
+
         /// <summary>
         /// Returns a specific move validation message, depending on if the rook being moved to a new spot is the other player's chess piece, or if the move is valid.
         /// /// </summary>
@@ -21,14 +23,16 @@ namespace ChessAPI.GamePieces
             if (_game.MovingPlayer.Color != Color)
                 return MoveValidationMessage.WrongPieceColor;
 
-            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
+            if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
                 _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
 
+
                 var gamestatehelper = new GameStateHelper(_game);
                 gamestatehelper.ChangePlayerTurn();
+
 
                 return MoveValidationMessage.Succeeded;
             }
@@ -41,22 +45,17 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            if (first.Item1 == second.Item1 && first.Item2 == second.Item2)
-            {
-                return false;
-            }
+            if (!(MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 }))) return false;
             if (first.Item2 == second.Item2)
             {
-                return MoveHelper.LegalMoveHorizontal(first, second, _game, first.Item1 < second.Item1);
+                return MoveHelper.LegalMoveHorizontal(first, second, _game, (first.Item1 < second.Item1));
+
             }
             else if (first.Item1 == second.Item1)
             {
-                return MoveHelper.LegalMoveVertical(first, second, _game, first.Item2 < second.Item2);
+                return MoveHelper.LegalMoveVertical(first, second, _game, (first.Item2 < second.Item2));
             }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
     }
 }
