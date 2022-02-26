@@ -76,13 +76,21 @@ namespace ChessAPI.GamePieces
  
             do
             {
-                if (AllAreInBounds(new List<int> { start, start2 }))
+                //if (AllAreInBounds(new List<int> { start, start2 }))
+                //{
+                //    start = start - 1;
+                //    start2 = start2 + 1 * plusMinus;
+                //}
+                if (AllAreInBounds(new List<int> { start }))
                 {
                     start = start - 1;
+                }
+                if (AllAreInBounds(new List<int> { start2 }))
+                {
                     start2 = start2 + 1 * plusMinus;
                 }
- 
- 
+
+
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start==newCooords.Item1 && start2 != newCooords.Item2 ) ) return false;
                 //if ((game.Board[start, start2].Name != " " && start != newCooords.Item1) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
@@ -110,12 +118,15 @@ namespace ChessAPI.GamePieces
             int start2 = oldCoords.Item2;
             do
             {
-                if (AllAreInBounds(new List<int> { start, start2 }))
+                if (AllAreInBounds(new List<int> { start }))
                 {
                     start = start - 1;
+                }
+                if (AllAreInBounds(new List<int> { start2 }))
+                {
                     start2 = start2 + 1 * plusMinus;
                 }
-
+ 
                 //start = start + 1;
                 //start2 = start2 + 1 * plusMinus;
 

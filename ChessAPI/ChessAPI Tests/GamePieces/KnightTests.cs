@@ -47,7 +47,7 @@ namespace ChessAPI.GamePieces.Tests
             Gs = gamesService.CreateNewGame();
             EmptyBoard();
             Gs.Board[0, 1] = new Knight(Gs, Color.Light);   
-            //return person?.Name ?? "Unknown";
+ 
         }
 
         [TestMethod()]

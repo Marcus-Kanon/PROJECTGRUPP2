@@ -4,7 +4,8 @@ namespace ChessAPI.GamePieces
 {
     public class Bishop : GamePiece
     {
-        public override string Name { get => "\u265D"; }
+        //public override string Name { get => "\u265D"; }
+        public override string Name { get => "B"; }
 
         public Bishop(GameState game, Color color) : base(game, color)
         {
