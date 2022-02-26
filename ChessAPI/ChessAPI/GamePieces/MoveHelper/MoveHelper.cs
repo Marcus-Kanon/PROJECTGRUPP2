@@ -5,6 +5,16 @@ namespace ChessAPI.GamePieces
     public static class MoveHelper
 
     {
+
+        public static  bool AllAreInBounds (List<int> numbers)
+        {
+            foreach (var item in numbers)
+            {
+                if (item > 7 || item < 0) return false;
+
+            }
+            return true;
+        }
         public static bool LegalMoveVertical ((int,int) oldCoords, (int,int) newCooords, GameState game, bool isUp)
         {
 
@@ -14,7 +24,7 @@ namespace ChessAPI.GamePieces
             int start = oldCoords.Item2;
             do
             {
-                start = start + 1 * plusMinus;
+                if (start < 7 && start > 0 )   start = start + 1 * plusMinus;
                 if (
                     game.Board[oldCoords.Item1, start].Name != " "
 
@@ -36,8 +46,8 @@ namespace ChessAPI.GamePieces
             int start = oldCoords.Item1;
             do
             {
-
-                start = start + 1 * plusMinus;
+                if (start < 7 && start > 0) start = start + 1 * plusMinus;
+ 
 
 
                 //if (game.Board[start, oldCoords.Item2].Name != " " && game.Board[start,oldCoords.Item2 ].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
@@ -66,9 +76,12 @@ namespace ChessAPI.GamePieces
  
             do
             {
+                if (AllAreInBounds(new List<int> { start, start2 }))
+                {
+                    start = start - 1;
+                    start2 = start2 + 1 * plusMinus;
+                }
  
-                start = start - 1;
-                start2 = start2 + 1 * plusMinus;
  
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start==newCooords.Item1 && start2 != newCooords.Item2 ) ) return false;
                 //if ((game.Board[start, start2].Name != " " && start != newCooords.Item1) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
@@ -97,9 +110,17 @@ namespace ChessAPI.GamePieces
             int start2 = oldCoords.Item2;
             do
             {
-                start = start + 1;
-                start2 = start2 + 1 * plusMinus;
-                if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
+                if (AllAreInBounds(new List<int> { start, start2 }))
+                {
+                    start = start - 1;
+                    start2 = start2 + 1 * plusMinus;
+                }
+
+                //start = start + 1;
+                //start2 = start2 + 1 * plusMinus;
+
+
+                //if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
                 //if ((game.Board[start, start2].Name != " " ) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
                     (game.Board[start, start2].Name != " ")

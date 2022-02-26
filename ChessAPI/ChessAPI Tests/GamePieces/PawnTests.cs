@@ -20,7 +20,7 @@ namespace ChessAPI.GamePieces.Tests
         public void TestInitialize()
         {
             newGame = gamesService.CreateNewGame();
-            
+
             customGame = gamesService.CreateNewGame();
             customGame.Board = new GamePiece[4, 4]
             {

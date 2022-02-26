@@ -46,8 +46,9 @@ namespace ChessAPI.GamePieces
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
             Color myColor = this.Color == Color.Light ? Color.Dark : Color.Light;
+            if (!(MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 }))) return false;
             return (
-
+                    
                      //(!MoveHelper.IsGuarded(first,_game, myColor)
                      (!MoveHelper.IsGuarded(second, _game, myColor)
                             && ( 
