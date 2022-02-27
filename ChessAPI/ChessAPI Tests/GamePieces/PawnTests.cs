@@ -13,8 +13,8 @@ namespace ChessAPI.GamePieces.Tests
     public class PawnTests
     {
         readonly GamesService gamesService = new();
-        GameState? newGame;
-        GameState? customGame;
+        GameState newGame = null!;
+        GameState customGame = null!;
 
         [TestInitialize]
         public void TestInitialize()

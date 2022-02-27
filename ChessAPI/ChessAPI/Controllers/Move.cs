@@ -21,7 +21,7 @@ namespace ChessAPI.Controllers
         [HttpGet]
         public string Get(string gameId, string playerId, int newX, int newY, int oldX, int oldY)
         {
-            GameState game = _gamesService.Games.Find(q => q.GameId == gameId);
+            GameState game = _gamesService.Games.Find(q => q.GameId == gameId) ?? new GameState();
 
             if (game == null)
                 return "No game found";
@@ -32,7 +32,7 @@ namespace ChessAPI.Controllers
             if (playerId == game.Player2.Id && !game.Player2.IsPlayerTurn)
                 return $"Not your turn {game.Player2.Id}";
 
-            if (game.Board[oldX, oldY] == null)
+            if (game.Board == null || game.Board[oldX, oldY] == null)
                 return "Position is null";
 
             string json = JsonConvert.SerializeObject(game.Board[oldX, oldY].Move((oldX, oldY), (newX, newY)));
