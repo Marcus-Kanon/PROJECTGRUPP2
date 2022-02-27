@@ -20,22 +20,46 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override MoveValidationMessage Move((int, int) oldCords, (int, int) newCords)
         {
-            if (_game.MovingPlayer.Color != Color)
-                return MoveValidationMessage.WrongPieceColor;
+            //if (_game.MovingPlayer.Color != Color)
+            //    return MoveValidationMessage.WrongPieceColor;
 
-            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
-            else
+            //if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
+            ////if (!CheckLegalMove(oldCords, newCords) || MoveHelper.CheckCheck(this.Color, _game)) { return MoveValidationMessage.IllegalMove; }
+
+            //else
+            //{
+            //    _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
+            //    _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
+
+
+            //    var gamestatehelper = new GameStateHelper(_game);
+            //    gamestatehelper.ChangePlayerTurn();
+
+
+            //    return MoveValidationMessage.Succeeded;
+            //}
+
+            GamePiece[,] restoreBoard = MoveHelper.CopyCurrentBoard(_game);
+            _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
+            _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color.Empty);
+            if (MoveHelper.CheckCheck(this.Color, _game))//&& !MoveHelper.RealMateCheck(this.Color,_game)
             {
-                _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
-                _game.Board[oldCords.Item1, oldCords.Item2] = new NoPiece(_game, Color);
-
-
-                var gamestatehelper = new GameStateHelper(_game);
-                gamestatehelper.ChangePlayerTurn();
-
-
-                return MoveValidationMessage.Succeeded;
+                _game.Board[oldCords.Item1, oldCords.Item2] = _game.Board[newCords.Item1, newCords.Item2];
+                _game.Board[newCords.Item1, newCords.Item2] = new NoPiece(_game, Color.Empty);
+                _game.Board[newCords.Item1, newCords.Item2] = restoreBoard[newCords.Item1, newCords.Item2];
+                return MoveValidationMessage.IllegalMove;
             }
+
+            // else if (MoveHelper.RealChematecheck){ //AVSLUTA SPELET}
+            //else{
+            var gamestatehelper = new GameStateHelper(_game);
+            gamestatehelper.ChangePlayerTurn();
+
+            return MoveValidationMessage.Succeeded;
+            //}
+
+
+
         }
 
         /// <summary>
