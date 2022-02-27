@@ -10,7 +10,7 @@ using SharedCsharpModels.Models;
 namespace ChessAPI.GamePieces.Tests
 {
     [TestClass()]
-    public class KnightTests
+    public class TS_CA_KN_001
     {
         readonly GamesService gamesService = new();
         GameState? newGame;
@@ -97,7 +97,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(4, 4, 5, 2)]
         [DataRow(4, 4, 3, 2)]
 
-        public void MoveTest_LightKnightMovesOneSquareToTheSideAndTwoSquaresForwardOn_ReturnsSucceeded(int oldCol, int oldRow, int newCol, int newRow)
+        public void TC_CA_KN_MOVE_01(int oldCol, int oldRow, int newCol, int newRow)
         {
             var actual = customGame3?.Board?[4, 4].Move((oldCol, oldRow), (newCol, newRow));
             Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
@@ -121,7 +121,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(4, 4, 3, 7, MoveValidationMessage.IllegalMove)]
         [DataRow(4, 4, 4, 5, MoveValidationMessage.IllegalMove)]
 
-        public void MoveTest_LightKnightMovesToSameSpotOrToSomeRandomAssPlaceItIsNotSupposedTo_ReturnsIllegalMove(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
+        public void TC_CA_KN_MOVE_02(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
         {
             var actual = customGame3?.Board?[4, 4].Move((oldCol, oldRow), (newCol, newRow));
             Assert.AreEqual(expected, actual);
@@ -140,7 +140,7 @@ namespace ChessAPI.GamePieces.Tests
         //}
 
         [TestMethod()]
-        public void MoveTest_LightKnightCapturesDarkPawn_ReturnsSucceeded()
+        public void TC_CA_KN_MOVE_03()
         {
             var move = customGame2?.Board?[4, 4].Move((4, 4), (5, 6));
             var actual = move;
@@ -158,7 +158,7 @@ namespace ChessAPI.GamePieces.Tests
         //}
 
         [TestMethod()]
-        public void LightKnightDoesNotCaptureLightPawn_ReturnsIllegalMove()
+        public void TC_CA_KN_MOVE_04()
         {
             var move = customGame2?.Board?[4, 4].Move((4, 4), (3, 6));
             var actual = move;

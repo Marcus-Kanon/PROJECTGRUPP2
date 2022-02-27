@@ -10,7 +10,7 @@ using SharedCsharpModels.Models;
 namespace ChessAPI.GamePieces.Tests
 {
     [TestClass()]
-    public class PawnTests
+    public class TS_CA_P_001
     {
         readonly GamesService gamesService = new();
         GameState? newGame;
@@ -35,7 +35,7 @@ namespace ChessAPI.GamePieces.Tests
         }
 
         [TestMethod()]
-        public void MoveTest_LightPlayerMovesDarkPawn_ReturnsWrongPieceColor()
+        public void TS_CA_P_MOVE_01()
         {
             var move = newGame?.Board?[0, 6].Move((0, 6), (0, 4));
             var actual = move;
@@ -43,7 +43,7 @@ namespace ChessAPI.GamePieces.Tests
         }
 
         [TestMethod()]
-        public void MoveTest_DarkPlayerMovesLightPawn_ReturnsWrongPieceColor()
+        public void TS_CA_P_MOVE_02()
         {
             newGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
             newGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
@@ -55,7 +55,7 @@ namespace ChessAPI.GamePieces.Tests
         [TestMethod()]
         [DataRow(0, 1, 0, 2)]
         [DataRow(0, 1, 0, 3)]
-        public void MoveTest_LightPawnMovesOneSquareOrTwoSquaresForwardOnFirstMove_ReturnsSucceedede(int oldCol, int oldRow, int newCol, int newRow)
+        public void TS_CA_P_MOVE_03(int oldCol, int oldRow, int newCol, int newRow)
         {
             var actual = newGame?.Board?[0,1].Move((oldCol, oldRow), (newCol, newRow));
             Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
@@ -64,7 +64,7 @@ namespace ChessAPI.GamePieces.Tests
         [TestMethod()]
         [DataRow(0, 6, 0, 5, MoveValidationMessage.Succeeded)]
         [DataRow(0, 6, 0, 4, MoveValidationMessage.Succeeded)]
-        public void MoveTest_DarkPawnMovesOneSquareOrTwoSquaresForwardOnFirstMove_ReturnsSucceeded(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
+        public void TS_CA_P_MOVE_04(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
         {
             newGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
             newGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
@@ -78,7 +78,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(4, 3, 3, 3, MoveValidationMessage.IllegalMove)]
         [DataRow(4, 2, 3, 3, MoveValidationMessage.IllegalMove)]
         [DataRow(4, 2, 4, 3, MoveValidationMessage.IllegalMove)]
-        public void MoveTest_LightPawnMovesToSameSpotOrBackwardsOrSidewaysOrDiagonallyOrPathBlocked_ReturnsIllegalMove(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
+        public void TS_CA_P_MOVE_05(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
         {
             var actual = customGame?.Board?[0, 1].Move((oldCol, oldRow), (newCol, newRow));
             Assert.AreEqual(expected, actual);
@@ -90,7 +90,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(3, 4, 4, 4, MoveValidationMessage.IllegalMove)]
         [DataRow(2, 4, 3, 3, MoveValidationMessage.IllegalMove)]
         [DataRow(3, 5, 3, 4, MoveValidationMessage.IllegalMove)]
-        public void MoveTest_DarkPawnMovesToSameSpotBackwardsOrSidewaysOrDiagonallyOrPathBlocked_ReturnsIllegalMove(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
+        public void TS_CA_P_MOVE_06(int oldCol, int oldRow, int newCol, int newRow, MoveValidationMessage expected)
         {
             customGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
             customGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
@@ -99,7 +99,7 @@ namespace ChessAPI.GamePieces.Tests
         }
 
         [TestMethod()]
-        public void MoveTest_LightPawnMovesDiagonallyIfDarkPawnStandsThere_ReturnsSucceeded()
+        public void TS_CA_P_MOVE_07()
         {
             var move = customGame?.Board?[4, 3].Move((4, 3), (3, 4));
             var actual = move;
@@ -107,7 +107,7 @@ namespace ChessAPI.GamePieces.Tests
         }
 
         [TestMethod()]
-        public void MoveTest_DarkPawnMovesDiagonallyIfWhitePawnStandsThere_ReturnsSucceededr()
+        public void TS_CA_P_MOVE_08()
         {
             customGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
             customGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
