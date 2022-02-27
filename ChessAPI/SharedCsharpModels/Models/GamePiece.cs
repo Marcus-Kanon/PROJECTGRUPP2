@@ -7,7 +7,7 @@
         public virtual PieceType Type { get; set; }
 
         public bool LegalNextMove { get; set; }
-        protected GameState _game = null!;
+        protected GameState _game;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePiece"/> class.
@@ -39,7 +39,6 @@
         public virtual bool CheckLegalMove((int, int) first, (int, int) second)
         {
             return false;
-            //throw new NotImplementedException();
         }
     }
 }
