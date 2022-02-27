@@ -54,7 +54,7 @@ namespace ChessAPI.GamePieces.Tests
         [DataRow(2, 2, 1, 1)]
         [DataRow(2, 2, 3, 1)]
         [DataRow(2, 2, 3, 3)]
-        [DataRow(2, 2, 1, 3)] 
+        [DataRow(2, 2, 1, 3)]
         public void TC_CA_B_MOVE_03(int oldCol, int oldRow, int newCol, int newRow)
         {
             var actual = customGame?.Board?[2,2].Move((oldCol, oldRow), (newCol, newRow));
@@ -76,7 +76,7 @@ namespace ChessAPI.GamePieces.Tests
 
         [TestMethod()]
         [DataRow(2, 2, 2, 2)]
-        [DataRow(2, 2, 5, 5)] 
+        [DataRow(2, 2, 5, 5)]
         [DataRow(2, 2, 2, 3)]
         [DataRow(2, 2, 3, 2)]
         [DataRow(2, 2, 0, 4)]

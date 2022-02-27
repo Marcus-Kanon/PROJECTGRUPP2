@@ -47,7 +47,6 @@ namespace ClientManual
 
             if (GetCurrentConsoleFontEx(ConsoleOutputHandle, false, ref before))
             {
-
                 FontInfo set = new FontInfo
                 {
                     cbSize = Marshal.SizeOf<FontInfo>(),

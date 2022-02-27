@@ -22,7 +22,7 @@ namespace ChessAPI.GamePieces
             if (_game.MovingPlayer.Color != Color)
                 return MoveValidationMessage.WrongPieceColor;
 
-            if (!(CheckLegalMove(oldCords, newCords))) { return MoveValidationMessage.IllegalMove; }
+            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
@@ -43,18 +43,18 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            if (!(MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 }))) return false;
+            if (!MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 })) return false;
             if (first.Item2 == second.Item2 || first.Item1 == second.Item1)
             {
                 return false;
             }
             else if (second.Item1 < first.Item1)
             {
-                return MoveHelper.LegalMoveLeftDiagonals(first, second, _game, (second.Item2 > first.Item2));
+                return MoveHelper.LegalMoveLeftDiagonals(first, second, _game, second.Item2 > first.Item2);
             }
             else
             {
-                return MoveHelper.LegalMoveRightDiagonals(first, second, _game, (second.Item2 > first.Item2));
+                return MoveHelper.LegalMoveRightDiagonals(first, second, _game, second.Item2 > first.Item2);
             }
         }
     }

@@ -5,19 +5,24 @@ namespace ChessAPI.GamePieces
     public static class MoveHelper
 
     {
-
         public static bool AllAreInBounds(List<int> numbers)
         {
             foreach (var item in numbers)
             {
                 if (item > 7 || item < 0) return false;
-
             }
             return true;
         }
+        /// <summary>
+        ///  Checks whether a move along the is along the vertical axis and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveVertical((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
-
             int plusMinus = isUp ? 1 : -1;
             if (oldCoords.Item1 != newCooords.Item1) return false;
 
@@ -39,6 +44,14 @@ namespace ChessAPI.GamePieces
             } while (start != newCooords.Item2);
             return true;
         }
+        /// <summary>
+        ///  Checks whether a move along the is along the horizontal axis and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isRight">whether target horizontal coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveHorizontal((int, int) oldCoords, (int, int) newCooords, GameState game, bool isRight)
         {
             int plusMinus = isRight ? 1 : -1;
@@ -47,8 +60,6 @@ namespace ChessAPI.GamePieces
             do
             {
                 if (start < 7 && start > 0) start = start + 1 * plusMinus;
-
-
 
                 //if (game.Board[start, oldCoords.Item2].Name != " " && game.Board[start,oldCoords.Item2 ].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
@@ -67,6 +78,14 @@ namespace ChessAPI.GamePieces
             } while (start != newCooords.Item1);
             return true;
         }
+        /// <summary>
+        /// Checks whether a move is along a left hand diagonal and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveLeftDiagonals((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             int plusMinus = isUp ? 1 : -1;
@@ -89,7 +108,6 @@ namespace ChessAPI.GamePieces
                 {
                     start2 = start2 + 1 * plusMinus;
                 }
-
 
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
                 ////if ((game.Board[start, start2].Name != " " && start != newCooords.Item1) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
@@ -117,20 +135,25 @@ namespace ChessAPI.GamePieces
 
                     (game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
 
-
                     ||
                     (start == newCooords.Item1 && start2 != newCooords.Item2)
 
                     )
                 {
-
                     return false;
                 }
             } while (start != newCooords.Item1 || start2 != newCooords.Item2);
 
-
             return true;
         }
+        /// <summary>
+        ///  Checks whether a move is along a left hand diagonal and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveRightDiagonals((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             int plusMinus = isUp ? 1 : -1;
@@ -153,7 +176,6 @@ namespace ChessAPI.GamePieces
                 //start = start + 1;
                 //start2 = start2 + 1 * plusMinus;
 
-
                 //if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
                 //if ((game.Board[start, start2].Name != " " ) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
@@ -163,23 +185,25 @@ namespace ChessAPI.GamePieces
 
                     (game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
 
-
                     ||
                     (start == newCooords.Item1 && start2 != newCooords.Item2)
 
                     )
 
-
                 {
-
                     return false;
                 }
             } while (start != newCooords.Item1 || start2 != newCooords.Item2);
 
-
             return true;
         }
-
+        /// <summary>
+        /// Tests whether any piece of a specified color can move to a position
+        /// </summary>
+        /// <param name="target">the coordinates to tested for ability  to move to</param>
+        /// <param name="game"></param>
+        /// <param name="enemyColor">the color of the pieces to be tested for ability to move to target</param>
+        /// <returns>true if any piece of the specified color can</returns>
         public static bool CanAnyMoveTo((int, int) target, GameState game, Color enemyColor)
         {
             for (int i = 0; i < 8; i++)
@@ -188,13 +212,19 @@ namespace ChessAPI.GamePieces
                 {
                     bool truth = game.Board[i, j].CheckLegalMove((i, j), (target.Item1, target.Item2)) && game.Board[i, j].Color == enemyColor;
                     if (truth) return truth;
-
                 }
-
             }
             return false;
         }
 
+        /// <summary>
+        /// test whether the specified square is guarded by pieces of a specified color, that is to say wheter a
+        /// piece on the square could be captured, were it the other sides turn.
+        /// </summary>
+        /// <param name="target">the square to be tested</param>
+        /// <param name="game"></param>
+        /// <param name="enemyColor">the color of pieces to be tested for ability to move to square</param>
+        /// <returns>true if the piece could be captured</returns>
         public static bool IsGuarded((int, int) target, GameState game, Color enemyColor) //onödiggör Ovanstående
         {
             //if (game.Board[target.Item1, target.Item2].Color != enemyColor) return false;
@@ -219,14 +249,14 @@ namespace ChessAPI.GamePieces
                     if (game.Board[i, j].Type != PieceType.King)                //skydd mot regression
                     {
                         //Console.WriteLine(game.Board[target.Item1, target.Item2].Type.ToString()+" "+ game.Board[target.Item1, target.Item2].Color.ToString());
-                        truth = (
+                        truth =
                                        game.Board[i, j].CheckLegalMove((i, j), (target.Item1, target.Item2))
 
                                        && game.Board[i, j].Color == enemyColor
 
                                     //&& game.Board[i, j].Type != PieceType.Pawn
 
-                                    );
+                                    ;
                         Console.WriteLine(i + " " + j + " " + truth + " myColor " + myColor.ToString() + " enemyC " + enemyColor.ToString());
                         //bool dare =  (
 
@@ -241,11 +271,7 @@ namespace ChessAPI.GamePieces
                         //            )    
                         ;
 
-
                     }
-
-
-
 
                     //if (truth  ) return (truth  );
 
@@ -281,7 +307,6 @@ namespace ChessAPI.GamePieces
                                 //     KILROY WAS    
                                 //       HERE
 
-
                                 break;
                             default:
                                 Console.WriteLine("default");
@@ -292,14 +317,11 @@ namespace ChessAPI.GamePieces
                                 //     KILROY WAS    
                                 //       HERE
 
-
                                 break;
                         }
                         return truth;
                     };
-
                 }
-
             }
             switch (tempPiece.ToString())
             {
@@ -331,7 +353,6 @@ namespace ChessAPI.GamePieces
                     //     KILROY WAS    
                     //       HERE
 
-
                     break;
                 default:
                     Console.WriteLine("default");
@@ -342,11 +363,9 @@ namespace ChessAPI.GamePieces
                     //     KILROY WAS    
                     //       HERE
 
-
                     break;
             }
             return truth;
         }
-
     }
 }
