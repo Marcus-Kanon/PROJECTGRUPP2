@@ -76,7 +76,7 @@ namespace ChessAPI.GamePieces.Tests
 
         [TestMethod()]
         [DataRow(2, 2, 2, 2)]
-        [DataRow(2, 2, 5, 5)] //kan för flytta sig igenom vit/blockad
+        [DataRow(2, 2, 5, 5)] 
         [DataRow(2, 2, 2, 3)]
         [DataRow(2, 2, 3, 2)]
         [DataRow(2, 2, 0, 4)]
@@ -89,11 +89,11 @@ namespace ChessAPI.GamePieces.Tests
 
         [TestMethod()]
         [DataRow(4, 4, 4, 4)]
-        [DataRow(4, 4, 1, 1)] //kan för flytta sig igenom vit/blockad
+        [DataRow(4, 4, 1, 1)]
         [DataRow(4, 4, 4, 3)]
         [DataRow(4, 4, 4, 3)]
         [DataRow(4, 4, 6, 2)]
-        [DataRow(4, 4, 7, 1)] //kan inte förflytta sig igenom sin egna kompis (vilket är vad vi vill ha)
+        [DataRow(4, 4, 7, 1)]
         public void MoveTest_DarkBishopWhenMovedToSameSpotorPathBlockedOrForwardOrSideWaysOrToOwnColorPiece_ReturnsIllegalMove(int oldCol, int oldRow, int newCol, int newRow)
         {
             customGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
@@ -103,19 +103,19 @@ namespace ChessAPI.GamePieces.Tests
         }
 
         [TestMethod()]
-        public void MoveTest_LightQueenMovesToDarkBishop_ReturnsSucceeded()
+        public void MoveTest_LightBishopMovesToDarkBishop_ReturnsSucceeded()
         {
-            var move = customGame?.Board?[1, 1].Move((1, 1), (6, 6));
+            var move = customGame?.Board?[2, 2].Move((2, 2), (4, 4));
             var actual = move;
             Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
         }
 
         [TestMethod()]
-        public void MoveTest_DarkQueenMovesToLightBishop_ReturnsSucceeded()
+        public void MoveTest_DarkBishopMovesToLightBishop_ReturnsSucceeded()
         {
             customGame.Player1 = new() { Color = Color.Light, IsPlayerTurn = false };
             customGame.Player2 = new() { Color = Color.Dark, IsPlayerTurn = true };
-            var move = customGame?.Board?[6, 6].Move((6, 6), (1, 1));
+            var move = customGame?.Board?[4, 4].Move((4, 4), (2, 2));
             var actual = move;
             Assert.AreEqual(MoveValidationMessage.Succeeded, actual);
         }
