@@ -51,7 +51,10 @@ namespace ChessAPI.GamePieces
             {
                 return MoveHelper.LegalMoveVertical(first, second, _game, first.Item2 < second.Item2);
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
     }
 }

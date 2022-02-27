@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using SharedCsharpModels.Models;
 using SharedCsharpModels.View;
+#pragma warning disable SYSLIB0014 // Type or member is obsolete
 
 namespace ClientManual
 {
@@ -15,7 +16,7 @@ namespace ClientManual
             SetWindowSize();
             ConsoleHelper.SetCurrentFont("MS Gothic", 20);
 
-            GameState game = null;
+            GameState game = new();
             string playerID = "";
             string results = "";
             UserMenu(ref game, ref playerID, ref results);
@@ -142,8 +143,7 @@ namespace ClientManual
         /// <param name="results">The API answer.</param>
         private static void JoinGame(out GameState game, out string joinplayerID, out string results)
         {
-            string? joinGameID;
-            AskToJoinGame(out joinplayerID, out joinGameID);
+            AskToJoinGame(out joinplayerID, out string joinGameID);
             results = GetBoard(joinplayerID, joinGameID);
             game = Deserializer(results);
         }
@@ -153,13 +153,13 @@ namespace ClientManual
         /// </summary>
         /// <param name="playerID">The user's player ID.</param>
         /// <param name="joinGameID">The game ID.</param>
-        private static void AskToJoinGame(out string joinplayerID, out string? joinGameID)
+        private static void AskToJoinGame(out string joinplayerID, out string joinGameID)
         {
             Console.Clear();
             Console.Write("Enter game ID: ");
-            joinGameID = Console.ReadLine();
+            joinGameID = Console.ReadLine() ?? "";
             Console.Write("Enter player ID: ");
-            joinplayerID = Console.ReadLine();
+            joinplayerID = Console.ReadLine() ?? "";
         }
 
         /// <summary>
@@ -167,10 +167,7 @@ namespace ClientManual
         /// </summary>
         /// <param name="results">The API answer.</param>
         /// <returns></returns>
-        private static GameState Deserializer(string results)
-        {
-            return JsonConvert.DeserializeObject<GameState>(results);
-        }
+        private static GameState Deserializer(string results) => JsonConvert.DeserializeObject<GameState>(results) ?? new GameState();
 
         /// <summary>
         /// Connects to API to get the state of chosen chessboard.
@@ -178,19 +175,13 @@ namespace ClientManual
         /// <param name="playerID">The user's player ID.</param>
         /// <param name="GameID">The game's ID.</param>
         /// <returns></returns>
-        private static string GetBoard(string playerID, string? GameID)
-        {
-            return new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + GameID + "/" + playerID);
-        }
+        private static string GetBoard(string? playerID, string? GameID) => new WebClient().DownloadString("https://localhost:7223/api/GetBoard/" + GameID + "/" + playerID);
 
         /// <summary>
         /// Connects to API to create a new game.
         /// </summary>
         /// <returns></returns>
-        private static string GetCreateGame()
-        {
-            return new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
-        }
+        private static string GetCreateGame() => new WebClient().DownloadString("https://localhost:7223/api/creategame/create");
 
         /// <summary>
         /// Asks player for the coordinates.
@@ -206,12 +197,12 @@ namespace ClientManual
         {
             string results;
             Console.WriteLine("\nChoose coordinates of piece to move: ");
-            Console.Write("current row (vertical): "); oldY = InputCoordinate(oldY);
-            Console.Write("current column (horizontal): "); oldX = InputCoordinate(oldX);
-            Console.Write("new row (vertical): "); newY = InputCoordinate(newY);
-            Console.Write("new column (horizontal): "); newX = InputCoordinate(newX);
+            Console.Write("current row (vertical): "); oldY = InputCoordinate();
+            Console.Write("current column (horizontal): "); oldX = InputCoordinate();
+            Console.Write("new row (vertical): "); newY = InputCoordinate();
+            Console.Write("new column (horizontal): "); newX = InputCoordinate();
 
-            results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{playerID}/{oldX.ToString()}/{oldY.ToString()}/{newX.ToString()}/{newY.ToString()}");
+            results = new WebClient().DownloadString("https://localhost:7223/api/Move/" + $"{game.GameId}/{playerID}/{oldX}/{oldY}/{newX}/{newY}");
 
             ShowMoveMessage(results, playerID);
             return results;
@@ -222,10 +213,12 @@ namespace ClientManual
         /// </summary>
         private static void SetWindowSize()
         {
+#pragma warning disable CA1416 // Validate platform compatibility
             Console.WindowWidth = 80;
             Console.WindowHeight = 40;
             Console.BufferWidth = 80;
             Console.BufferHeight = 40;
+#pragma warning restore CA1416 // Validate platform compatibility
         }
 
         /// <summary>
@@ -233,14 +226,17 @@ namespace ClientManual
         /// </summary>
         /// <param name="input">The user's input.</param>
         /// <returns></returns>
-        private static int InputCoordinate(int input)
+        private static int InputCoordinate()
         {
+            int input;
             while (true)
             {
                 if (int.TryParse(Console.ReadLine(), out input))
                 {
                     if (input >= 0 && input <= 8)
+                    {
                         break;
+                    }
                     else
                     {
                         Console.Clear();
@@ -291,3 +287,4 @@ namespace ClientManual
         }
     }
 }
+#pragma warning restore SYSLIB0014 // Type or member is obsolete

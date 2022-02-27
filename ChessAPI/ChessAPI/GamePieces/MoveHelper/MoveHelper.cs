@@ -3,7 +3,6 @@
 namespace ChessAPI.GamePieces
 {
     public static class MoveHelper
-
     {
         public static bool AllAreInBounds(List<int> numbers)
         {
@@ -29,7 +28,7 @@ namespace ChessAPI.GamePieces
             int start = oldCoords.Item2;
             do
             {
-                if (start < 7 && start > 0) start = start + 1 * plusMinus;
+                if (start < 7 && start > 0) start += 1 * plusMinus;
                 if (
                     game.Board[oldCoords.Item1, start].Name != " "
 
@@ -59,7 +58,7 @@ namespace ChessAPI.GamePieces
             int start = oldCoords.Item1;
             do
             {
-                if (start < 7 && start > 0) start = start + 1 * plusMinus;
+                if (start < 7 && start > 0) start += 1 * plusMinus;
 
                 //if (game.Board[start, oldCoords.Item2].Name != " " && game.Board[start,oldCoords.Item2 ].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
@@ -102,11 +101,11 @@ namespace ChessAPI.GamePieces
                 //}
                 if (AllAreInBounds(new List<int> { start }))
                 {
-                    start = start - 1;
+                    start--;
                 }
                 if (AllAreInBounds(new List<int> { start2 }))
                 {
-                    start2 = start2 + 1 * plusMinus;
+                    start2 += 1 * plusMinus;
                 }
 
                 if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
@@ -129,7 +128,7 @@ namespace ChessAPI.GamePieces
                 //    )
 
                 if (
-                    (game.Board[start, start2].Name != " ") && (start != newCooords.Item1 || start2 != newCooords.Item2)
+                    ((game.Board[start, start2].Name != " ") && (start != newCooords.Item1 || start2 != newCooords.Item2))
 
                     ||
 
@@ -166,11 +165,11 @@ namespace ChessAPI.GamePieces
                 //start2 = start2 + 1 * plusMinus;
                 if (AllAreInBounds(new List<int> { start }))
                 {
-                    start = start + 1;
+                    start++;
                 }
                 if (AllAreInBounds(new List<int> { start2 }))
                 {
-                    start2 = start2 + 1 * plusMinus;
+                    start2 += 1 * plusMinus;
                 }
 
                 //start = start + 1;
@@ -179,7 +178,7 @@ namespace ChessAPI.GamePieces
                 //if (start < 0 || start > 7 || start2 < 0 || start2 > 7 || (start == newCooords.Item1 && start2 != newCooords.Item2)) return false;
                 //if ((game.Board[start, start2].Name != " " ) && game.Board[start, start2].Color == game.Board[oldCoords.Item1, oldCoords.Item2].Color)
                 if (
-                    (game.Board[start, start2].Name != " ") && (start != newCooords.Item1 || start2 != newCooords.Item2)
+                    ((game.Board[start, start2].Name != " ") && (start != newCooords.Item1 || start2 != newCooords.Item2))
 
                     ||
 
@@ -244,7 +243,7 @@ namespace ChessAPI.GamePieces
             {
                 for (int j = 0; j < 8; j++)
                 {
-                    int plusMinus = enemyColor == Color.Dark ? -1 : 1;
+                    _ = enemyColor == Color.Dark ? -1 : 1;
 
                     if (game.Board[i, j].Type != PieceType.King)                //skydd mot regression
                     {
@@ -269,7 +268,6 @@ namespace ChessAPI.GamePieces
                         //                && Math.Abs(target.Item1 - i) == 1
 
                         //            )    
-                        ;
 
                     }
 
@@ -277,7 +275,7 @@ namespace ChessAPI.GamePieces
 
                     if (truth)
                     {
-                        switch (tempPiece.ToString())
+                        switch (tempPiece)
                         {
                             case "NoPiece":
                                 game.Board[target.Item1, target.Item2] = new NoPiece(game, Color.Empty);
@@ -320,10 +318,10 @@ namespace ChessAPI.GamePieces
                                 break;
                         }
                         return truth;
-                    };
+                    }
                 }
             }
-            switch (tempPiece.ToString())
+            switch (tempPiece)
             {
                 case "NoPiece":
                     game.Board[target.Item1, target.Item2] = new NoPiece(game, Color.Empty);

@@ -13,18 +13,16 @@ namespace ChessAPI.GamePieces.Tests
     public class TS_CA_KN_001
     {
         readonly GamesService gamesService = new();
-        GameState? newGame;
         GameState? customGame;
-        GameState? customGame2; 
+        GameState? customGame2;
         GameState? customGame3;
         [TestInitialize]
         public void TestInitialize()
         {
-            newGame = gamesService.CreateNewGame();
             customGame = gamesService.CreateNewGame();
             customGame2 = gamesService.CreateNewGame();
             customGame3 = gamesService.CreateNewGame();
-   
+
             customGame.Board = new GamePiece[8, 8]
             {
                 //   0                                       1                                               2                              3                                           4                                   5                                       6                                               7       
@@ -70,7 +68,7 @@ namespace ChessAPI.GamePieces.Tests
             };
 
             //customGame4.Board = new GamePiece[8, 8]
- 
+
         }
 
         //        [TestMethod()]
@@ -152,7 +150,6 @@ namespace ChessAPI.GamePieces.Tests
         //{
         //    var color = customGame2?.Board?[4, 4].Color;
         //    var color2 = customGame2?.Board?[3, 6].Color;
-
 
         //    Assert.AreEqual(color, color2);
         //}
