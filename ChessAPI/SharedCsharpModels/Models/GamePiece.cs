@@ -6,8 +6,8 @@
         public virtual Color Color { get; set; }
         public virtual PieceType Type { get; set; }
 
-        protected GameState _game;
         public bool LegalNextMove { get; set; }
+        protected GameState _game = null!;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="GamePiece"/> class.

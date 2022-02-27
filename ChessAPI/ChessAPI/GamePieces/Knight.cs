@@ -41,14 +41,6 @@ namespace ChessAPI.GamePieces
         /// <param name="first">The current coordinates.</param>
         /// <param name="second">The new coordinates.</param>
         /// <returns></returns>
-        public override bool CheckLegalMove((int, int) first, (int, int) second)
-        {
-            //return (((Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1) || (Math.Abs(first.Item1 - second.Item1) == 2 && Math.Abs(first.Item2 - second.Item2) == 1)) && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color));
-
-            return ((Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1) || (Math.Abs(first.Item1 - second.Item1) == 2 && Math.Abs(first.Item2 - second.Item2) == 1)) && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == _game.Board[first.Item1,first.Item2].Color   );
-
-        }
-
-
+        public override bool CheckLegalMove((int, int) first, (int, int) second) => ((Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1) || (Math.Abs(first.Item1 - second.Item1) == 2 && Math.Abs(first.Item2 - second.Item2) == 1)) && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == _game.Board[first.Item1, first.Item2].Color);
     }
 }

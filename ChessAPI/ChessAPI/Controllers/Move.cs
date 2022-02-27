@@ -35,9 +35,7 @@ namespace ChessAPI.Controllers
             if (game.Board == null || game.Board[oldX, oldY] == null)
                 return "Position is null";
 
-            string json = JsonConvert.SerializeObject(game.Board[oldX, oldY].Move((oldX, oldY), (newX, newY)));
-
-            return json;
+            return JsonConvert.SerializeObject(game.Board[oldX, oldY].Move((oldX, oldY), (newX, newY)));
         }
     }
 }

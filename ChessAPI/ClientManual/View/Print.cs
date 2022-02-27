@@ -6,7 +6,7 @@ using SharedCsharpModels.Models;
 
 namespace SharedCsharpModels.View
 {
-    public class Print
+    public static class Print
     {
         const int BOARD_WIDTH = 8;
         const int BOARD_HEIGHT = 8;
@@ -16,7 +16,7 @@ namespace SharedCsharpModels.View
         /// </summary>
         public static void Header()
         {
-            string header = "                               CHESS BY GROUP 2\n";
+            const string header = "                               CHESS BY GROUP 2\n";
             Console.WriteLine(header);
         }
 
@@ -35,7 +35,7 @@ namespace SharedCsharpModels.View
         /// <param name="game">Gamestate.</param>
         public static void ChessBoard(GameState game)
         {
-            Console.WriteLine($"\n\n     0    1    2    3    4    5    6    7              ");
+            Console.WriteLine("\n\n     0    1    2    3    4    5    6    7              ");
 
             for (int row = 0; row < BOARD_HEIGHT; row++)
             {
@@ -57,7 +57,7 @@ namespace SharedCsharpModels.View
 
                     Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-                    if (row % 2 == 0 && column % 2 != 0 || row % 2 != 0 && column % 2 == 0)
+                    if ((row % 2 == 0 && column % 2 != 0) || (row % 2 != 0 && column % 2 == 0))
                         Console.BackgroundColor = ConsoleColor.DarkYellow;
                     else
                         Console.BackgroundColor = ConsoleColor.DarkGray;

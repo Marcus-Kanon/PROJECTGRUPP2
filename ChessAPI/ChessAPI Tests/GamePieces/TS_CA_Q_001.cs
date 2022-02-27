@@ -13,7 +13,7 @@ namespace ChessAPI.GamePieces.Tests
     public class TS_CA_Q_001
     {
         readonly GamesService gamesService = new();
-        GameState? customGame;
+        GameState customGame = new();
 
         [TestInitialize]
         public void TestInitialize()

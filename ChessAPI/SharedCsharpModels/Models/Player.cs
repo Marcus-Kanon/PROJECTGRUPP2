@@ -5,7 +5,7 @@
         /// <summary>
         /// Gets or sets the player ID.
         /// </summary>
-        public string Id { get; set; }
+        public string Id { get; set; } = "";
         /// <summary>
         /// Gets or sets the color.
         /// </summary>
