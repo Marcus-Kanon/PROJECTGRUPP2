@@ -22,7 +22,7 @@ namespace ChessAPI.Controllers
         public string Get(string gameId, string playerId)
         {
             GameState game = _gamesService.Games
-                .Find(q => q.GameId == gameId && (q.Player1.Id == playerId || q.Player2.Id == playerId));
+                .Find(q => q.GameId == gameId && (q.Player1.Id == playerId || q.Player2.Id == playerId)) ?? new GameState();
 
             var json = JsonConvert.SerializeObject(game);
 
