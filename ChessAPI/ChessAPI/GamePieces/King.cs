@@ -46,18 +46,8 @@ namespace ChessAPI.GamePieces
             return
                 //(!MoveHelper.IsGuarded(first,_game, myColor)
                      !MoveHelper.IsGuarded(second, _game, myColor)
-                            &&  
+                            &&
                                 Math.Abs(second.Item2 - first.Item2)  <= 1 &&  Math.Abs(second.Item1 - first.Item1) <= 1 &&
-                                        !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color)
-                    
-                    
-                    
-                              
-                       
-                       // TODO: Villkor f�r rockad h�r
-                            
-                            ;
-        }
-
+                                        !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color);       }
     }
 }
