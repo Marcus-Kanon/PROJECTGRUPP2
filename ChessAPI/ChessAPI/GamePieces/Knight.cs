@@ -46,9 +46,12 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            if (!(MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 }))) return false;
-            //return true;
-            return (Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1 && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color));
+
+            //return (((Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1) || (Math.Abs(first.Item1 - second.Item1) == 2 && Math.Abs(first.Item2 - second.Item2) == 1)) && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == this.Color));
+            
+            return (((Math.Abs(first.Item2 - second.Item2) == 2 && Math.Abs(first.Item1 - second.Item1) == 1) || (Math.Abs(first.Item1 - second.Item1) == 2 && Math.Abs(first.Item2 - second.Item2) == 1)) && !(_game.Board[second.Item1, second.Item2].Name != " " && _game.Board[second.Item1, second.Item2].Color == _game.Board[first.Item1,first.Item2].Color   ));
+
+
         }
 
 
