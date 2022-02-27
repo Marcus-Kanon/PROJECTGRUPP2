@@ -10,7 +10,7 @@ using SharedCsharpModels.Models;
 namespace ChessAPI.Controllers.Tests
 {
     [TestClass()]
-    public class CreateGameTests
+    public class TS_CA_CG_001
     {
         readonly GamesService gamesService = new();
         GameState? gameState;
@@ -22,7 +22,7 @@ namespace ChessAPI.Controllers.Tests
         }
 
         [TestMethod()]
-        public void CreateTest_CreatingANewGame_ReturnsWhitePlayerAsPlayingTurn()
+        public void TC_CA_CG_C_01()
         {
             var actual = gameState?.MovingPlayer?.Color;
 

@@ -10,6 +10,7 @@ namespace ChessAPI.GamePieces
         {
             Type = PieceType.Rook;
         }
+
         /// <summary>
         /// Returns a specific move validation message, depending on if the rook being moved to a new spot is the other player's chess piece, or if the move is valid.
         /// /// </summary>
@@ -41,10 +42,7 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            if (first.Item1 == second.Item1 && first.Item2 == second.Item2)
-            {
-                return false;
-            }
+            if (!MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 })) return false;
             if (first.Item2 == second.Item2)
             {
                 return MoveHelper.LegalMoveHorizontal(first, second, _game, first.Item1 < second.Item1);
@@ -53,10 +51,7 @@ namespace ChessAPI.GamePieces
             {
                 return MoveHelper.LegalMoveVertical(first, second, _game, first.Item2 < second.Item2);
             }
-            else
-            {
-                return false;
-            }
+            else return false;
         }
     }
 }

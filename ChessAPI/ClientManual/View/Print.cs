@@ -86,7 +86,6 @@ namespace SharedCsharpModels.View
                     Console.ResetColor();
 
                     PlayerInfo(game, row, column);
-
                 }
                 if (row > 0 && row < BOARD_HEIGHT-1)
                     Console.Write("|\n");

@@ -42,11 +42,8 @@ namespace ChessAPI.GamePieces
         /// <returns></returns>
         public override bool CheckLegalMove((int, int) first, (int, int) second)
         {
-            if (first.Item1 == second.Item1 && first.Item2 == second.Item2)
-            {
-                return false;
-            }
-            else if (first.Item2 == second.Item2)
+            if (!MoveHelper.AllAreInBounds(new List<int> { first.Item1, first.Item2, second.Item1, second.Item2 })) return false;
+            if (first.Item2 == second.Item2)
             {
                 return MoveHelper.LegalMoveHorizontal(first, second, _game, first.Item1 < second.Item1);
             }

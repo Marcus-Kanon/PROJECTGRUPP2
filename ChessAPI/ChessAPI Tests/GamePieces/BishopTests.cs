@@ -62,7 +62,6 @@ namespace ChessAPI.GamePieces.Tests
         {
             //Arrange
 
-
             //Act
             var actual = Gs.Board[X, Y].Move((X, Y), (moveX, moveY));
             Assert.AreEqual(expected, actual);
