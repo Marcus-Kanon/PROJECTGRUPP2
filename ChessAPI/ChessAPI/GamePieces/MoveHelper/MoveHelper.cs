@@ -5,6 +5,14 @@ namespace ChessAPI.GamePieces
     public static class MoveHelper
 
     {
+     /// <summary>
+     ///  Checks whether a move along the is along the vertical axis and legal, returning true if it is.
+     /// </summary>
+     /// <param name="oldCoords">The current coordinates</param>
+     /// <param name="newCooords">The new coordinates</param>
+     /// <param name="game"></param>
+     /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+     /// <returns>bool true if move legal </returns>
         public static bool LegalMoveVertical ((int,int) oldCoords, (int,int) newCooords, GameState game, bool isUp)
         {
 
@@ -29,6 +37,14 @@ namespace ChessAPI.GamePieces
             } while (start != newCooords.Item2);
                 return true;
         }
+        /// <summary>
+        ///  Checks whether a move along the is along the horizontal axis and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isRight">whether target horizontal coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveHorizontal((int, int) oldCoords, (int, int) newCooords, GameState game, bool isRight)
         {
             int plusMinus = isRight ? 1 : -1;
@@ -57,6 +73,14 @@ namespace ChessAPI.GamePieces
             } while (start != newCooords.Item1  );
             return true;
         }
+        /// <summary>
+        /// Checks whether a move is along a left hand diagonal and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
         public static bool LegalMoveLeftDiagonals((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             int plusMinus = isUp ? 1 : -1;
@@ -89,6 +113,15 @@ namespace ChessAPI.GamePieces
   
                 return true;
         }
+        /// <summary>
+        ///  Checks whether a move is along a left hand diagonal and legal, returning true if it is.
+        /// </summary>
+        /// <param name="oldCoords">The current coordinates</param>
+        /// <param name="newCooords">The new coordinates</param>
+        /// <param name="game"></param>
+        /// <param name="isUp">whether target vertical coordinate is greater  than current</param>
+        /// <returns>bool true if move legal </returns>
+ 
         public static bool LegalMoveRightDiagonals((int, int) oldCoords, (int, int) newCooords, GameState game, bool isUp)
         {
             int plusMinus = isUp ? 1 : -1;
@@ -120,7 +153,13 @@ namespace ChessAPI.GamePieces
 
             return true;
         }
-
+        /// <summary>
+        /// Tests whether any piece of a specified color can move to a position
+        /// </summary>
+        /// <param name="target">the coordinates to tested for ability  to move to</param>
+        /// <param name="game"></param>
+        /// <param name="enemyColor">the color of the pieces to be tested for ability to move to target</param>
+        /// <returns>true if any piece of the specified color can</returns>
         public static bool CanAnyMoveTo((int, int) target, GameState game, Color enemyColor)
         {
             for (int i = 0; i < 8; i++)
@@ -135,7 +174,14 @@ namespace ChessAPI.GamePieces
             }
             return false;
         }
-
+        /// <summary>
+        /// test whether the specified square is guarded by pieces of a specified color, that is to say wheter a 
+        /// piece on the square could be captured, were it the other sides turn.
+        /// </summary>
+        /// <param name="target">the square to be tested</param>
+        /// <param name="game"></param>
+        /// <param name="enemyColor">the color of pieces to be tested for ability to move to square</param>
+        /// <returns>true if the piece could be captured</returns>
         public static bool IsGuarded((int, int) target, GameState game, Color enemyColor) //onödiggör Ovanstående
         {
             //if (game.Board[target.Item1, target.Item2].Color != enemyColor) return false;
@@ -165,10 +211,12 @@ namespace ChessAPI.GamePieces
 
                                         && game.Board[i, j].Color == enemyColor
 
+
+
                                      //&& game.Board[i, j].Type != PieceType.Pawn
 
                                      ;
-                         Console.WriteLine (i+" "+j+" "+truth+" myColor "+myColor.ToString()+" enemyC "+enemyColor.ToString());
+                         //Console.WriteLine (i+" "+j+" "+truth+" myColor "+myColor.ToString()+" enemyC "+enemyColor.ToString());
                         //bool dare =  (
 
                         //                (game.Board[i, j].Type == PieceType.Pawn) 
@@ -225,7 +273,7 @@ namespace ChessAPI.GamePieces
 
                                 break;
                             default:
-                                Console.WriteLine("default");
+                                //Console.WriteLine("default");
                                 //        ,,,           inte detta heller - isf har ngt gått fel.
                                 //       (O O)       
                                 //---ooO--(_)--Ooo--- 
@@ -248,7 +296,7 @@ namespace ChessAPI.GamePieces
                     game.Board[target.Item1, target.Item2] = new NoPiece(game, Color.Empty);
                     break;
                 case "Pawn":
-                    Console.WriteLine("pawn");
+                    //Console.WriteLine("pawn");
                     game.Board[target.Item1, target.Item2] = new Pawn(game, targetColor);
 
                     break;
