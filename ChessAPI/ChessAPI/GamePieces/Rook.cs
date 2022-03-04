@@ -22,7 +22,7 @@ namespace ChessAPI.GamePieces
             if (_game.MovingPlayer.Color != Color)
                 return MoveValidationMessage.WrongPieceColor;
 
-            if (!CheckLegalMove(oldCords, newCords)) { return MoveValidationMessage.IllegalMove; }
+            if (oldCords == newCords || !CheckLegalMove(oldCords, newCords) || oldCords==newCords) { return MoveValidationMessage.IllegalMove; }
             else
             {
                 _game.Board[newCords.Item1, newCords.Item2] = _game.Board[oldCords.Item1, oldCords.Item2];
